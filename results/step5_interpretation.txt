@@ -11,9 +11,12 @@ Chaussy's α (θ_N(σ) = θ_N(0)(1+ασ²)) maps to η = c·α/(2d): α = 2.3 ->
   σ_j = 0.894: η_tot =  4.76, η_vol = 0.288, share  6.0 %
   σ_j = 0.930: η_tot =  7.75, η_vol = 0.399, share  5.1 %
   σ_j = 0.949: η_tot = 12.36, η_vol = 0.565, share  4.6 %
-Reading: the volume coupling alone is too weak to make the transition first order (η_vol < 1 for every
-σ_j); its share of η_tot (≈2-7 %) depends on σ_j. With β calibrated to dT_N/dP, η_vol restates the
-Clausius-Clapeyron relation; the mean field does not identify the remaining (non-volume) coupling.
+  σ_j = 0.960: η_tot = 19.84, η_vol = 0.832, share  4.2 %
+  σ_j = 0.970: η_tot = 49.84, η_vol = 1.890, share  3.8 %
+Reading: over σ_j = 0.856-0.949 the volume coupling alone is too weak to make the transition first order
+(η_vol < 1; it reaches 1 between σ_j = 0.96 and 0.97); its share of η_tot falls from 6.8 to 4.6 % (Browne set 3.5 %).
+With β calibrated to dT_N/dP, η_vol is the elastic energy of the volume jump that Clausius-Clapeyron implies
+for that slope; the mean field does not identify the remaining (non-volume) coupling.
 
 (2) Entropy decomposition (J mol⁻¹ K⁻¹; ×15.15 for J kg⁻¹ K⁻¹)
   full spin entropy R ln 4 (S = 3/2)                 11.53   [upper bound]
@@ -26,7 +29,7 @@ Clausius-Clapeyron relation; the mean field does not identify the remaining (non
   -> ≈ 16 % of the digitized anomaly sits in broad tails (pre-transition rise and post-transition tail)
   lattice share: Browne 1971 states the lattice ΔS is < 1 % of the transition entropy; a Grüneisen
   estimate (γ ≈ 1.7) gives ~0.5 J/mol/K (≈ 7 %). Reported as a range, unresolved.
-Reading (hedged): the calorimetric jump is ~59 % of R ln 4 and 13-36 % below the strain-implied
+Reading (hedged): the calorimetric jump is ~59 % of R ln 4 and 11-26 % below the strain-implied
 mean-field value. That is consistent with entropy already removed above T_N by paramagnetic short-range
 order in a strongly frustrated lattice (|θ_p|/T_N ≈ 6-9; θ_p = -1650 to -2600 K, Chaussy), and with the
 broad tails. The single-order-parameter mean field cannot capture this; it is stated as a limitation.

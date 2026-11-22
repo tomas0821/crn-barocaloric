@@ -63,14 +63,15 @@ out("Chaussy's α (θ_N(σ) = θ_N(0)(1+ασ²)) maps to η = c·α/(2d): " + ",
 # σ_j scan: η_tot depends on the chosen jump; η_vol (calibrated to dT_N/dP, Chaussy set) stays < 1 throughout.
 # With β calibrated, η_vol equals B·V_m·(ΔV/V)²/(2 d R T0 σ_j⁴), the elastic energy of the volume jump.
 out("σ_j scan (Chaussy a = 9.0, T_N 281.65; B = 257 GPa; σ_j = 0.856 calibrated, 0.894-0.949 strain-implied):")
-for sj in (0.856, 0.894, 0.93, 0.949):
+for sj in (0.856, 0.894, 0.93, 0.949, 0.96, 0.97):
     eta = eta_for_sig(sj); g, _ = transition(eta); T0 = 281.65 / g
     K = 1 / 257e9; b = 9.0e-9 * Ds(sj) / (K * c * T0 * sj**2)
     ev = K * c**2 * T0 * b**2 * RV / (2 * d)
     out(f"  σ_j = {sj:.3f}: η_tot = {eta:5.2f}, η_vol = {ev:.3f}, share {100*ev/eta:4.1f} %")
-out("Reading: the volume coupling alone is too weak to make the transition first order (η_vol < 1 for every")
-out("σ_j); its share of η_tot (≈2-7 %) depends on σ_j. With β calibrated to dT_N/dP, η_vol restates the")
-out("Clausius-Clapeyron relation; the mean field does not identify the remaining (non-volume) coupling.")
+out("Reading: over σ_j = 0.856-0.949 the volume coupling alone is too weak to make the transition first order")
+out("(η_vol < 1; it reaches 1 between σ_j = 0.96 and 0.97); its share of η_tot falls from 6.8 to 4.6 % (Browne set 3.5 %).")
+out("With β calibrated to dT_N/dP, η_vol is the elastic energy of the volume jump that Clausius-Clapeyron implies")
+out("for that slope; the mean field does not identify the remaining (non-volume) coupling.")
 out("")
 out("(2) Entropy decomposition (J mol⁻¹ K⁻¹; ×15.15 for J kg⁻¹ K⁻¹)")
 Rln4 = R * np.log(4)
@@ -90,7 +91,7 @@ out(f"  -> calorimetric/R ln 4 = {29*66.003/281.65/Rln4:.2f}; strain-implied Bri
 out("  -> ≈ 16 % of the digitized anomaly sits in broad tails (pre-transition rise and post-transition tail)")
 out("  lattice share: Browne 1971 states the lattice ΔS is < 1 % of the transition entropy; a Grüneisen")
 out("  estimate (γ ≈ 1.7) gives ~0.5 J/mol/K (≈ 7 %). Reported as a range, unresolved.")
-out("Reading (hedged): the calorimetric jump is ~59 % of R ln 4 and 13-36 % below the strain-implied")
+out("Reading (hedged): the calorimetric jump is ~59 % of R ln 4 and 11-26 % below the strain-implied")
 out("mean-field value. That is consistent with entropy already removed above T_N by paramagnetic short-range")
 out("order in a strongly frustrated lattice (|θ_p|/T_N ≈ 6-9; θ_p = -1650 to -2600 K, Chaussy), and with the")
 out("broad tails. The single-order-parameter mean field cannot capture this; it is stated as a limitation.")

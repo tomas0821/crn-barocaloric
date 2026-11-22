@@ -177,7 +177,7 @@ def main():
     axs[0].set_ylabel(r"$\Delta S_\mathrm{rev}$ (J kg$^{-1}$ K$^{-1}$)"); axs[1].set_ylabel(r"$\Delta T_\mathrm{rev}$ (K)")
     for k, ax in enumerate(axs):
         ax.set_xlabel("$T$ (K)"); fs.panel(ax, "ab"[k])
-    axs[0].legend(loc="lower left", fontsize=6.5)
+    axs[1].legend(loc="upper right", fontsize=6.5, ncol=2, handlelength=1.2, columnspacing=0.6)
     fig.tight_layout(); fs.save(fig, ROOT / "figures/step2_dS_dT_chaussy_h4"); plt.close(fig)
 
 

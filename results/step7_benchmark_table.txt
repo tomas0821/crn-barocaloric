@@ -12,7 +12,7 @@ Fe3(bntrz)6(tcnset)6 (SCO)                 80.0           0.114          250.0  
 (NH4)2SO4                                  65.0           0.117           51.0         0.60      6 0.12 (0.05-0.13)
 CrN hydrostatic (Chaussy set)             103.0           0.633            9.0         0.57    3.5 0.39 (0.20-0.62)
 CrN hydrostatic (Browne set)              130.0           0.799            7.4         0.59   1.85 0.25 (0.21-0.30)
-CrN uniaxial <110> (CC estimate)          103.0           0.633           23.0         1.46    3.5 0.15 (0.08-0.23)
+CrN uniaxial <110> (CC estimate)          103.0           0.633           23.5         1.49    3.5 0.15 (0.08-0.22)
 
 CC consistency check: implied ΔV/V for CrN ≈ 0.57-0.6 % (measured 0.56-0.62 %); Mn3NiN ≈ 0.39 % (measured ~0.4 %).
 Reading: per volume, CrN's transition entropy (0.63-0.80 J/cm³/K) is the largest of the magnetically ordered

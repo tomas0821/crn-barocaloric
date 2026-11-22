@@ -8,16 +8,20 @@ against cooling at P,
 
 Measured cross-branch target, built from the deposited data only:
     S_c(T, P) - S_h(T, 0) = [S_c(T, P) - S_c(T, 0)]  +  [S_c(T, 0) - S_h(T, 0)]
-                             Fig. 4(a) cooling curve      ambient hysteresis gap from the Fig. 1 thermograms
-                                                          (each branch integrated and normalized to ΔS_t = 12.5)
+                             Fig. 4(a) cooling curve      ambient hysteresis gap, built two ways:
+  A: from the Fig. 1 thermograms, each branch integrated with its own sign within ±5 K of its peak and
+     normalized (the cooling trace carries a residual baseline far from its peak; integrating |dq/dT| over
+     the whole trace would count it as transition area). Windows of ±3-10 K give the same result.
+  B: from the ambient profiles derived from the Fig. 4 curves at 0.25 GPa (assumes that sample is fully AFM).
 Stern-Taulats et al. (2014, p. 12) define the reversibility region the same way: bounded by the ambient
 reverse transition and the forward transition under pressure.
 
 Prediction: the same blind inputs as step4_validation.py (ambient heating shape, ΔS_t = 12.5 J/kg/K,
 h = 9.6 K, a_cool = 64 K/GPa, lattice term off), with S_c(T, P) = S_ex(T + h - a_cool P).
 Reported: the pressure at which max_T |ΔS_x| reaches ΔS_t/2, the magnitudes, and the window at 2.5 kbar.
-Caveat: the target combines two figures whose temperature registration was not cross-checked; the pressure
-grid is sparse (8 cooling curves).
+Also reported: the temperatures at which the two ambient constructions reach x_FM = 0.5 (the registration
+of the two figures), and, for CrN, the overlap vs cross-branch reversible fraction. The pressure grid is
+sparse (8 cooling curves).
 """
 from pathlib import Path
 import sys
@@ -46,10 +50,14 @@ r = rows("ferh_ambient_dqdT_fig1.csv")
 br = {k: (np.array([float(x[1]) for x in r if x[0] == k]), np.array([float(x[3]) for x in r if x[0] == k])) for k in ("heating", "cooling")}
 T = np.round(np.arange(280.0, 360.0001, 0.02), 3)
 
-def frac_fm(branch):
-    """FM (high-T phase) fraction along an ambient branch: cumulative ∫|dq/dT|/T dT from low T, normalized."""
-    t, c = br[branch]; o = np.argsort(t); t, c = t[o], np.abs(c[o])
-    y = np.clip(np.interp(T, t, c, left=0.0, right=0.0), 0, None) / T
+def frac_fm(branch, win=5.0):
+    """FM (high-T phase) fraction along an ambient branch: cumulative ∫(sign·dq/dT)/T dT from low T, taken
+    within ±win K of the branch's peak (heating endothermic +, cooling exothermic -), clipped at 0, normalized."""
+    sgn = 1.0 if branch == "heating" else -1.0
+    t, c = br[branch]; o = np.argsort(t); t, c = t[o], sgn * c[o]
+    pk = t[np.argmax(c)]
+    y = np.interp(T, t, c, left=0.0, right=0.0)
+    y = np.where(np.abs(T - pk) <= win, np.clip(y, 0.0, None), 0.0) / T
     F = np.concatenate([[0.0], np.cumsum(0.5 * (y[1:] + y[:-1]) * np.diff(T))])
     return F / F[-1]
 
@@ -73,7 +81,7 @@ def prof(branch, Tmax):
     o = np.argsort(t); y = np.interp(Tc, t[o], xf[o]); y[Tc > Tmax] = 1.0
     return np.clip(y, 0.0, 1.0)
 gaps = {
-    "A: ambient gap from Fig. 1 thermograms": gap_c,
+    "A: ambient gap from Fig. 1 thermograms (signed, ±5 K)": gap_c,
     "B: ambient gap from Fig. 4-derived profiles": dSt * (prof("cooling", 318.0) - prof("heating", 327.0)),
 }
 Pf = np.round(np.arange(0.0, 0.3, 0.001), 4)
@@ -99,11 +107,28 @@ for gname, gap in gaps.items():
     Pm, Xm = np.array(Pm), np.array(Xm)
     Pm_half = cross(Pm, Xm)
     wm, wp = half_edges(Tc, cur["2.5"][0]), half_edges(Tc, cur["2.5"][1])
-    phys = "physical" if Xm.max() <= dSt * 1.05 and Xm[0] < 1.0 else "UNPHYSICAL (exceeds ΔS_t or nonzero at 0.03 GPa: registration offset)"
+    phys = "physical" if Xm.max() <= dSt * 1.05 and Xm[0] < 1.0 else "UNPHYSICAL (exceeds ΔS_t or nonzero at 0.03 GPa)"
     out(f"   target is {phys}")
     out(f"   half-reversibility pressure: measured {Pm_half:.3f} GPa, Eq.(3) {Pp_half:.3f} GPa (diff {Pp_half - Pm_half:+.3f}; C2 tolerance ±0.03)")
     out(f"   window at 2.5 kbar: measured {wm[0]:.1f}-{wm[1]:.1f} K, Eq.(3) {wp[0]:.1f}-{wp[1]:.1f} K (published 319-325 K; C3 tolerance ±1.5 K)")
+    d = np.array(Xp) - Xm; big = Xm >= 0.5 * dSt
+    out(f"   magnitudes (pred - meas): {d[big].min():+.2f} to {d[big].max():+.2f} J/kg/K where meas >= ΔS_t/2 (C2 rule); "
+        f"at 0.162 GPa {d[3]:+.2f} (meas {Xm[3]:.2f}, pred {Xp[3]:.2f})")
     out("")
+# Window sensitivity of target A and the registration of the two ambient constructions.
+out("== target A, sensitivity to the integration window (half-reversibility pressure, measured)")
+for wv in (3.0, 4.0, 6.0, 8.0, 10.0):
+    gw = np.interp(Tc, T, dSt * (frac_fm("cooling", wv) - frac_fm("heating", wv)))
+    Xw = []
+    for lab in labels:
+        tt = np.array([float(x[2]) for x in m if x[0] == "cooling" and x[1] == lab]); dd = np.array([float(x[3]) for x in m if x[0] == "cooling" and x[1] == lab])
+        oo = np.argsort(tt); Xw.append(np.abs(np.minimum(0.0, np.interp(Tc, tt[oo], dd[oo], left=0.0, right=0.0) + gw)).max())
+    out(f"   ±{wv:4.1f} K: {cross(np.array(P_cool) / 10, np.array(Xw)):.3f} GPa")
+x50 = lambda TT, xx: float(np.interp(0.5, xx, TT))
+out("== registration: temperature at x_FM = 0.5 (heating / cooling)")
+out(f"   Fig. 1 thermograms (±5 K): {x50(T, frac_fm('heating')):.2f} / {x50(T, frac_fm('cooling')):.2f} K")
+out(f"   Fig. 4-derived profiles  : {x50(Tc, prof('heating', 327.0)):.2f} / {x50(Tc, prof('cooling', 318.0)):.2f} K")
+out("")
 (ROOT / "results/step4_crossbranch_posthoc.txt").write_text("\n".join(lines) + "\n")
 
 # ---------------------------------------------------------------- CrN: overlap vs cross-branch reversibility
@@ -132,15 +157,19 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 plt.rcParams.update({"font.size": 8, "axes.labelsize": 8, "legend.fontsize": 7})
-gB = gaps["B: ambient gap from Fig. 4-derived profiles"]
-Pm_, Xm_ = [], []
-for lab, pk in zip(labels, P_cool):
-    tt = np.array([float(x[2]) for x in m if x[0] == "cooling" and x[1] == lab]); dd = np.array([float(x[3]) for x in m if x[0] == "cooling" and x[1] == lab])
-    oo = np.argsort(tt); dcool = np.interp(Tc, tt[oo], dd[oo], left=0.0, right=0.0)
-    Pm_.append(pk / 10); Xm_.append(np.abs(np.minimum(0.0, dcool + gB)).max())
+def target_points(gap):
+    out_ = []
+    for lab in labels:
+        tt = np.array([float(x[2]) for x in m if x[0] == "cooling" and x[1] == lab]); dd = np.array([float(x[3]) for x in m if x[0] == "cooling" and x[1] == lab])
+        oo = np.argsort(tt); out_.append(np.abs(np.minimum(0.0, np.interp(Tc, tt[oo], dd[oo], left=0.0, right=0.0) + gap)).max())
+    return np.array(out_)
+Pm_ = np.array(P_cool) / 10
+fpo = np.array([np.minimum(np.abs(b.S_ex(Tc - a_c * p) - b.S_ex(Tc)), np.abs(b.S_ex(Tc - a_h * p) - b.S_ex(Tc))).max() for p in Pf])
 fig, ax = plt.subplots(figsize=(3.35, 2.5))
-ax.plot(Pf, fp, "-", color="tab:blue", lw=1.2, label="predicted, equation (3)")
-ax.plot(Pm_, Xm_, "o", color="k", ms=3.5, label="measured (cross-branch target)")
+ax.plot(Pf, fp, "-", color="tab:blue", lw=1.2, label="predicted, cross-branch (eq. 3)")
+ax.plot(Pf, fpo, "--", color="tab:orange", lw=1.0, label="predicted, overlap")
+ax.plot(Pm_, target_points(gaps["A: ambient gap from Fig. 1 thermograms (signed, ±5 K)"]), "o", color="k", ms=3.5, label="measured, target A")
+ax.plot(Pm_ + 0.003, target_points(gaps["B: ambient gap from Fig. 4-derived profiles"]), "s", mfc="none", color="0.4", ms=3.5, label="measured, target B")
 ax.axhline(0.5 * dSt, color="gray", ls=":", lw=0.8)
 ax.set_xlabel("pressure (GPa)"); ax.set_ylabel(r"peak $|\Delta S_\mathrm{x}|$ (J kg$^{-1}$ K$^{-1}$)")
 ax.set_xlim(0, 0.27); ax.legend(frameon=False, loc="upper left")

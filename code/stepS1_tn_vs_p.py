@@ -22,7 +22,7 @@ P = np.linspace(0, 1.8, 181)
 draws = np.array([s3.sample_slope(9.0, dict(kind="wide")) for _ in range(3000)])
 band = np.percentile(draws[:, :1] * P + draws[:, 1:] * P**2, [2.5, 50, 97.5], axis=0)
 fig, ax = plt.subplots(figsize=(3.35, 2.6))
-ax.fill_between(P, band[0], band[2], color="tab:blue", alpha=0.2, lw=0, label="slope prior (95 %)")
+ax.fill_between(P, band[0], band[2], color="tab:blue", alpha=0.2, lw=0, label="slope prior, Chaussy set (95 %)")
 ax.plot(P, band[1], color="tab:blue", lw=0.8)
 p4 = P[P <= 0.4]
 ax.plot(p4, 7.35 * p4, "-", color="tab:orange", lw=1.4, label="Browne 1971 (warming / cooling)")
@@ -38,4 +38,11 @@ ax.set_xlim(0, 1.8); ax.set_ylim(0, 25); ax.legend(frameon=False, loc="upper lef
 fig.tight_layout()
 for ext in ("png", "pdf"):
     fig.savefig(ROOT / f"figures/stepS1_tn_vs_p.{ext}", dpi=300)
-print("mean prior slope over 0-1.8 GPa: 2.5/50/97.5 % =", np.percentile(draws[:, 0] + 1.8 * draws[:, 1], [2.5, 50, 97.5]).round(2))
+lines = ["Supplementary figure S1: measured T_N(P) shifts vs the Monte-Carlo slope prior (step 3, wide)."]
+for name, a_meas in (("Chaussy", 9.0), ("Browne", 7.41)):
+    d = draws if name == "Chaussy" else np.array([s3.sample_slope(a_meas, dict(kind="wide")) for _ in range(3000)])
+    lines.append(f"{name} prior: mean slope over 0-1.8 GPa, 2.5/50/97.5 % = "
+                 + ", ".join(f"{v:.2f}" for v in np.percentile(d[:, 0] + 1.8 * d[:, 1], [2.5, 50, 97.5]))
+                 + f" K/GPa; mean curvature b = {d[:, 1].mean():+.2f} K/GPa^2")
+(ROOT / "results/stepS1_tn_vs_p.txt").write_text("\n".join(lines) + "\n")
+print("\n".join(lines))

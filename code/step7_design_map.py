@@ -36,7 +36,7 @@ RHO_CRN = 4 * 66.003 / (6.02214076e23 * (4.148e-8) ** 3)       # g/cm^3 (x-ray, 
 CRN = {
     "CrN hydrostatic (Chaussy set)":  ((103, 95, 106), (9.0, 8.1, 9.9), (3.5, 2, 5), RHO_CRN, +1, "calorimetric ΔS; a ±10 %; classic bulk h 2-5 K"),
     "CrN hydrostatic (Browne set)":   ((130, 124, 135), (7.41, 6.7, 8.15), (1.85, 1.7, 2.0), RHO_CRN, +1, "spin-only ΔS (not calorimetric); own h (Browne 1971 Fig. 1)"),
-    "CrN uniaxial <110> (CC estimate)": ((103, 95, 106), (23.0, 21.8, 24.2), (3.5, 2, 5), RHO_CRN, +1, "single-domain/textured; a-axis strain 1.38-1.53 %"),
+    "CrN uniaxial <110> (CC estimate)": ((103, 95, 106), (23.5, 22.6, 24.6), (3.5, 2, 5), RHO_CRN, +1, "single-domain/textured; a-axis strain 1.38-1.53 %"),
 }
 
 def main():
@@ -68,9 +68,9 @@ def main():
              "NdCu3Fe4O12": "NdCu$_3$Fe$_4$O$_{12}$", "Fe3(bntrz)6(tcnset)6 (SCO)": "SCO",
              "(NH4)2SO4": "(NH$_4$)$_2$SO$_4$", "CrN hydrostatic (Chaussy set)": "CrN, P (Chaussy)",
              "CrN hydrostatic (Browne set)": "CrN, P (Browne)", "CrN uniaxial <110> (CC estimate)": r"CrN, $\sigma\parallel\langle110\rangle$"}
-    OFF_A = {"Mn3GaN": (5, -2), "Mn3NiN": (5, -3), "Fe49Rh51": (5, -9), "MnCoGeB0.03": (5, -9), "Ni-Mn-In": (5, -3),
+    OFF_A = {"Mn3GaN": (5, -2), "Mn3NiN": (5, -3), "Fe49Rh51": (6, 3), "MnCoGeB0.03": (5, -9), "Ni-Mn-In": (5, -3),
              "NPG": (5, 1), "(MnNiSi)0.62(FeCoGe)0.38": (-78, -3), "NdCu3Fe4O12": (5, 2), "Fe3(bntrz)6(tcnset)6 (SCO)": (-8, 6),
-             "(NH4)2SO4": (-62, 5), "CrN hydrostatic (Chaussy set)": (-32, -13), "CrN hydrostatic (Browne set)": (-28, 7),
+             "(NH4)2SO4": (-30, -12), "CrN hydrostatic (Chaussy set)": (-32, -13), "CrN hydrostatic (Browne set)": (-28, 7),
              "CrN uniaxial <110> (CC estimate)": (-26, 8)}
     OFF_B = {"Mn3NiN": (6, -3), "Fe49Rh51": (6, -3), "MnCoGeB0.03": (-56, -3), "NPG": (6, 2), "(MnNiSi)0.62(FeCoGe)0.38": (6, -2),
              "Fe3(bntrz)6(tcnset)6 (SCO)": (6, 2), "(NH4)2SO4": (-62, -3), "CrN hydrostatic (Chaussy set)": (-10, -13),
@@ -89,8 +89,7 @@ def main():
         if xl < XL[0] * 1.15:                      # line leaves through the left edge: label it at the bottom
             xl = dvv * 1e3 / (1.12 * YL[0])
         yl = dvv * 1e3 / xl
-        if YL[0] < yl < YL[1]:
-            ax.text(xl, yl * 1.05, f"{dvv*100:g} %", fontsize=6.5, color="0.5", clip_on=True)
+        # (isoline values are given in the caption; in-panel labels clipped at this size)
     for name, (dS, a, h, rho, dSv, dVV, pon) in rows.items():
         crn, col = style(name)
         xerr = [[a[0] - a[1]], [a[2] - a[0]]]; yerr = [[(dS[0] - dS[1]) * rho * 1e-3], [(dS[2] - dS[0]) * rho * 1e-3]]

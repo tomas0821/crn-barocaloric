@@ -190,7 +190,7 @@ def main():
     axs[2].plot(Pf, fpred, "k--", lw=0.9, label="FeRh pred.")
     ps = sorted(mcurves); axs[2].plot(ps, [mcurves[p][0] for p in ps], "s", ms=3, color="tab:red", label="Mn$_3$NiN meas.")
     axs[2].plot(ps, [mcurves[p][1] for p in ps], "--", lw=0.9, color="tab:red", label="Mn$_3$NiN pred.")
-    axs[2].set_xlabel("$P$ (GPa)"); axs[2].set_ylabel(r"peak $|\Delta S|$ (J kg$^{-1}$ K$^{-1}$)"); axs[2].legend(loc="lower right", fontsize=6.5, handlelength=1.2, borderaxespad=0.2)
+    axs[2].set_xlabel("$P$ (GPa)"); axs[2].set_ylabel(r"peak $|\Delta S|$ (J kg$^{-1}$ K$^{-1}$)"); axs[2].legend(loc="center right", bbox_to_anchor=(1.0, 0.45), fontsize=6.5, handlelength=1.2, borderaxespad=0.2)
     fs.panel(axs[2], "c", x=-0.22)
     fig.tight_layout(w_pad=0.6); fs.save(fig, ROOT / "figures/step4_validation"); plt.close(fig)
 
