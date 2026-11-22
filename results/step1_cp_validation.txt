@@ -8,6 +8,12 @@ B2 quad fit both wings                       -30..+40 C         424     26.9    
 B3 low-T quad -> step to high-T              -30..+40 C         441     28.0          6.55         99.2
 B4 line(-10..+25 C), sharp part only         -10..+25 C         367     23.2          5.45         82.5
 
+shortest intervals holding 50 % / 90 % of ΔS_t, and closed-form P50 / P90 = (h + W)/a at h = 4 K, a = 9.0 K/GPa:
+  B1 line(-30..+40 C)                      W50 =   4.5 K, W90 =  22.2 K -> P50 ≈ 0.94 GPa, P90 ≈ 2.91 GPa
+  B2 quad fit both wings                   W50 =   4.4 K, W90 =  20.4 K -> P50 ≈ 0.93 GPa, P90 ≈ 2.71 GPa
+  B3 low-T quad -> step to high-T          W50 =   4.6 K, W90 =  23.0 K -> P50 ≈ 0.96 GPa, P90 ≈ 3.00 GPa
+  B4 line(-10..+25 C), sharp part only     W50 =   3.8 K, W90 =  13.2 K -> P50 ≈ 0.87 GPa, P90 ≈ 1.91 GPa
+
 paper: L = 29 J/g (anomaly area) = 457 cal/mol; Clapeyron 28 J/g; dS = 29/281.65 J/g/K = 6.80 J/mol/K = 103 J/kg/K
 excess peak (B1) = 59.8 cal/mol/K; FWHM = 5.30 K (5.80 .. 11.10 degC); effective width L/peak = 7.29 K
 fraction of B1 anomaly area within +-5 K of the peak: 0.74

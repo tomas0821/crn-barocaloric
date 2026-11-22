@@ -17,7 +17,9 @@
       1971, at 22 K ε = -1.48 %, η = +1.56 %, ζ = -0.08 %, and 10-20 % smaller just below T_N.
     - Compression along cubic <110> therefore selects the domain with a ∥ σ (Browne's stress-cooling
       experiment shows this domain selection) and raises T_N.
-    - Range used: |Δε| = 1.25-1.60 %.
+    - Strain paired by source, for the a ∥ σ domain (the contracting axis, including the volume part):
+      Chaussy: |ε| = 1.48 % (deviatoric, 22 K) reduced by 10-20 % near T_N, plus |ΔV/3V| ≈ 0.2 %, so 1.38-1.53 %;
+      Browne: Δa/a = 1.6 % (total), used as 1.55-1.65 %. Hysteresis paired as in step 3 (Browne: own 1.7-2.0 K).
     - The quasi-direct reversible response under stress uses the validated code/baro.py with a = dT_N/dσ.
       The lattice term becomes the linear expansion α_V/3.
     CAVEATS, stated in the output: a single-domain or textured sample is assumed, and polycrystal
@@ -65,7 +67,7 @@ out("")
 
 # ---------------- (B) uniaxial stress
 out("(B) Uniaxial stress along cubic <110>, Clausius–Clapeyron: dT_N/dσ = V_m·|Δε|/ΔS_t")
-for de in (0.0125, 0.0140, 0.0160):
+for de in (0.0138, 0.0153, 0.0160):
     out(f"  |Δε| = {de*100:.2f} %: dT_N/dσ = {VM*de/6.80*1e9:.1f} K/GPa (Chaussy ΔS_t) | {VM*de/8.58*1e9:.1f} K/GPa (Browne ΔS_t)"
         f"   vs hydrostatic 7.4-9 K/GPa")
 T, Cex, Cbg, Tpk = s3.chaussy_shape()
@@ -73,13 +75,14 @@ TG = s3.TG
 SG = np.round(np.arange(0.0, 1.2001, 0.01), 3)        # stress grid (GPa)
 S_DT = (0.2, 0.3, 0.5, 0.75, 1.0)
 N = 1000
-sets = {"Chaussy": dict(dS=(6.30, 7.00), shift=0.0), "Browne": dict(dS=(8.20, 8.90), shift=287.0 - Tpk)}
+sets = {"Chaussy": dict(dS=(6.30, 7.00), shift=0.0, de=(0.0138, 0.0153), h=(2.0, 5.0)),
+        "Browne": dict(dS=(8.20, 8.90), shift=287.0 - Tpk, de=(0.0155, 0.0165), h=(1.7, 2.0))}
 bands = {}
 for name, st in sets.items():
     F, DSR, DTR, ON, P50, AS = [], [], [], [], [], []
     for _ in range(N):
-        dS = RNG.uniform(*st["dS"]); de = RNG.uniform(0.0125, 0.016); a = VM * de / dS * 1e9
-        h = RNG.uniform(3.0, 5.0); sig = RNG.uniform(0.0, 1.5); aV = RNG.uniform(0.9, 1.1)
+        dS = RNG.uniform(*st["dS"]); de = RNG.uniform(*st["de"]); a = VM * de / dS * 1e9
+        h = RNG.uniform(*st["h"]); sig = RNG.uniform(0.0, 1.5); aV = RNG.uniform(0.9, 1.1)
         Cx = np.interp(T - st["shift"], T, Cex, left=0.0, right=0.0)
         b = Baro(T, Cx, Cbg, a=a, h=h, v=s3.V_kg, alphaV=lambda TT, aV=aV: aV * (s3.A0 + s3.A1 * TT) / 3.0,
                  dS_target=dS / M, sigma_broad=sig)
@@ -89,7 +92,7 @@ for name, st in sets.items():
     q = lambda x: np.nanpercentile(np.array(x), [2.5, 16, 50, 84, 97.5], axis=0)
     bands[name] = dict(DSR=q(DSR), DTR=q(DTR), ON=q(ON), P50=q(P50), A=q(AS))
     B = bands[name]
-    out(f"== {name} set, uniaxial (N = {N}; |Δε| 1.25-1.60 %, h 3-5 K, σ_TN 0-1.5 K, linear α = α_V/3 ±10 %)")
+    out(f"== {name} set, uniaxial (N = {N}; |Δε| {100*st['de'][0]:.2f}-{100*st['de'][1]:.2f} %, h {st['h'][0]:g}-{st['h'][1]:g} K, σ_TN 0-1.5 K, linear α = α_V/3 ±10 %)")
     out(f"   dT_N/dσ [2.5,16,50,84,97.5]% = " + ", ".join(f"{x:.1f}" for x in B["A"]) + " K/GPa")
     out(f"   onset = {B['ON'][2]:.2f} GPa (68 %: {B['ON'][1]:.2f}-{B['ON'][3]:.2f}); σ50 = {B['P50'][2]:.2f} GPa (68 %: {B['P50'][1]:.2f}-{B['P50'][3]:.2f})")
     for p in S_DT:
@@ -110,16 +113,16 @@ import matplotlib.pyplot as plt
 PG = s3.PG
 hyd = []
 for _ in range(400):
-    dS = RNG.uniform(6.30, 7.00); a0, bc = s3.sample_slope(9.0, dict(kind="wide")); h = RNG.uniform(3, 5)
+    dS = RNG.uniform(6.30, 7.00); a0, bc = s3.sample_slope(9.0, dict(kind="wide")); h = RNG.uniform(2, 5)
     bb = s3.make(T, Cex, Cbg, 0.0, dS, a0, h, RNG.uniform(0, 1.5), RNG.uniform(0.9, 1.1), b=bc)
     f, dSr, _, _ = bb.summary(TG, PG, (1.0,))
     hyd.append(dSr)
 H = np.nanpercentile(np.array(hyd), [16, 50, 84], axis=0)
-fig, ax = plt.subplots(figsize=(6.4, 4.2), dpi=110)
-ax.fill_between(PG, H[0], H[2], color="tab:blue", alpha=0.3); ax.plot(PG, H[1], color="tab:blue", label="hydrostatic P (Chaussy set)")
+import figstyle as fs
+fig, ax = plt.subplots(figsize=(fs.HALF, 2.5))
+ax.fill_between(PG, H[0], H[2], color="tab:blue", alpha=0.3, lw=0); ax.plot(PG, H[1], color="tab:blue", label="hydrostatic $P$")
 B = bands["Chaussy"]["DSR"]
-ax.fill_between(SG, B[1], B[3], color="tab:red", alpha=0.3); ax.plot(SG, B[2], color="tab:red", label="uniaxial σ along ⟨110⟩ (Chaussy set, CC estimate)")
-ax.axvline(0.6, color="gray", ls=":", lw=1)
-ax.set_xlim(0, 2.0); ax.set_xlabel("applied pressure / uniaxial stress (GPa)"); ax.set_ylabel("peak reversible |ΔS| (J kg⁻¹ K⁻¹)")
-ax.set_title("CrN: the shear channel is ~2-3x more efficient than hydrostatic pressure (h = 3-5 K)", fontsize=8)
-ax.legend(fontsize=7); fig.tight_layout(); fig.savefig(ROOT / "figures/step6_uniaxial_vs_hydrostatic.png"); plt.close(fig)
+ax.fill_between(SG, B[1], B[3], color="tab:red", alpha=0.3, lw=0); ax.plot(SG, B[2], color="tab:red", label=r"uniaxial $\sigma \parallel \langle 110\rangle$ (estimate)")
+ax.axvline(0.6, color="gray", ls=":", lw=0.8)
+ax.set_xlim(0, 2.0); ax.set_xlabel("pressure or uniaxial stress (GPa)"); ax.set_ylabel(r"peak reversible $|\Delta S|$ (J kg$^{-1}$ K$^{-1}$)")
+ax.legend(loc="lower right"); fig.tight_layout(); fs.save(fig, ROOT / "figures/step6_uniaxial_vs_hydrostatic"); plt.close(fig)

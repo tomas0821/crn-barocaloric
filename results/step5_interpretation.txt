@@ -6,10 +6,14 @@ set                                       σ_j  η_tot   T0(K)    |β|  η_vol (
 Chaussy (ΔS 6.80, a 9.0, T_N 281.65)    0.856   3.48   229.8   12.5    0.238-0.243     0.068-0.070
 Browne (ΔS 8.58, a 7.41, T_N 287)       0.928   7.45   165.5   15.3    0.258-0.263     0.035-0.035
 Chaussy's α (θ_N(σ) = θ_N(0)(1+ασ²)) maps to η = c·α/(2d): α = 2.3 -> η = 5.64, α = 3.4 -> η = 8.33
-Reading: hydrostatic pressure couples through a channel that supplies only ~3-7 % of the effective
-first-order coupling, which is why dT_N/dP is small even though ΔS_t is large (a quantification of the
-non-volume origin Chaussy and Browne inferred in 1971). Uniaxial <110> stress reaches the dominant
-anisotropic channel (step 6: 18-23 K/GPa).
+σ_j scan (Chaussy a = 9.0, T_N 281.65; B = 257 GPa; σ_j = 0.856 calibrated, 0.894-0.949 strain-implied):
+  σ_j = 0.856: η_tot =  3.49, η_vol = 0.238, share  6.8 %
+  σ_j = 0.894: η_tot =  4.76, η_vol = 0.288, share  6.0 %
+  σ_j = 0.930: η_tot =  7.75, η_vol = 0.399, share  5.1 %
+  σ_j = 0.949: η_tot = 12.36, η_vol = 0.565, share  4.6 %
+Reading: the volume coupling alone is too weak to make the transition first order (η_vol < 1 for every
+σ_j); its share of η_tot (≈2-7 %) depends on σ_j. With β calibrated to dT_N/dP, η_vol restates the
+Clausius-Clapeyron relation; the mean field does not identify the remaining (non-volume) coupling.
 
 (2) Entropy decomposition (J mol⁻¹ K⁻¹; ×15.15 for J kg⁻¹ K⁻¹)
   full spin entropy R ln 4 (S = 3/2)                 11.53   [upper bound]

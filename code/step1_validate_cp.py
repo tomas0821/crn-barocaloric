@@ -89,6 +89,24 @@ def main():
         wtxt = "-10..+25 C" if name.startswith("B4") else "-30..+40 C"
         out(f"{name:40s} {wtxt:>14s} {L:11.0f} {L*CAL/M_CRN:8.1f} {dS:13.2f} {dS/M_CRN*1e3:12.1f}")
     out("")
+    # Shortest temperature intervals holding 50 % and 90 % of each background's ΔS_t, and the closed-form
+    # pressures they imply for the rigid shift: P_x ≈ (h + W_x)/a (h = 4 K, a = 9.0 K/GPa). Shows which
+    # reversibility pressures depend on the background (P90 does, P50 barely).
+    out("shortest intervals holding 50 % / 90 % of ΔS_t, and closed-form P50 / P90 = (h + W)/a at h = 4 K, a = 9.0 K/GPa:")
+    for name, base in bl.items():
+        win = np.isfinite(base) & (grid >= (-10 if name.startswith("B4") else -30)) & (grid <= (25 if name.startswith("B4") else 40))
+        g, y = grid[win], np.clip((Cg - base)[win], 0, None) * CAL / TK[win]
+        cum = np.concatenate([[0.0], np.cumsum(0.5 * (y[1:] + y[:-1]) * np.diff(g))]); cum /= cum[-1]
+        def shortest(fr):
+            best = np.inf
+            for i in range(len(g)):
+                j = np.searchsorted(cum, cum[i] + fr)
+                if j < len(g):
+                    best = min(best, g[j] - g[i])
+            return best
+        w50, w90 = shortest(0.5), shortest(0.9)
+        out(f"  {name:40s} W50 = {w50:5.1f} K, W90 = {w90:5.1f} K -> P50 ≈ {(4 + w50)/9.0:.2f} GPa, P90 ≈ {(4 + w90)/9.0:.2f} GPa")
+    out("")
     out("paper: L = 29 J/g (anomaly area) = 457 cal/mol; Clapeyron 28 J/g; dS = 29/281.65 J/g/K = 6.80 J/mol/K = 103 J/kg/K")
     # Width.
     base = bl["B1 line(-30..+40 C)"]; ex = Cg - base; pk = ex.max()
@@ -105,18 +123,19 @@ def main():
     (ROOT / "results").mkdir(exist_ok=True)
     (ROOT / "results/step1_cp_validation.txt").write_text("\n".join(lines) + "\n")
 
-    import matplotlib
-    matplotlib.use("Agg")
+    import figstyle as fs
     import matplotlib.pyplot as plt
-    fig, axs = plt.subplots(1, 2, figsize=(10, 4), dpi=110)
-    for ax, xl in zip(axs, [(-190, 45), (-25, 40)]):
-        ax.plot(grid, Cg, "k-", lw=1, label="digitized C_p")
+    nice = {"B1": "B1: line, 243–313 K", "B2": "B2: quadratic, both wings",
+            "B3": "B3: low-T quadratic, step", "B4": "B4: line, 263–298 K (sharp peak)"}
+    fig, axs = plt.subplots(1, 2, figsize=(fs.FULL, 2.5))
+    for ax, xl in zip(axs, [(T0C - 190, T0C + 45), (T0C - 25, T0C + 40)]):
+        ax.plot(TK, Cg * CAL, "k-", lw=1.0, label="digitized $C_p$")
         for (name, base), col in zip(bl.items(), ["tab:blue", "tab:orange", "tab:green", "tab:red"]):
-            ax.plot(grid, base, "--", lw=1, color=col, label=name)
-        ax.set_xlim(*xl); ax.set_xlabel("T (°C)"); ax.set_ylabel("C_p (cal mol⁻¹ K⁻¹)")
-    axs[1].set_ylim(0, 80); axs[0].legend(fontsize=7)
-    axs[0].set_title("Chaussy 1971 Fig. 3, digitized"); axs[1].set_title("anomaly and baselines")
-    fig.tight_layout(); fig.savefig(ROOT / "figures/step1_cp_baselines.png"); plt.close(fig)
+            ax.plot(TK, base * CAL, "--", lw=0.9, color=col, label=nice[name[:2]])
+        ax.set_xlim(*xl); ax.set_xlabel("$T$ (K)"); ax.set_ylabel(r"$C_p$ (J mol$^{-1}$ K$^{-1}$)")
+    axs[1].set_ylim(0, 335); axs[0].legend(loc="upper left")
+    fs.panel(axs[0], "a"); fs.panel(axs[1], "b")
+    fig.tight_layout(); fs.save(fig, ROOT / "figures/step1_cp_baselines"); plt.close(fig)
 
 if __name__ == "__main__":
     main()

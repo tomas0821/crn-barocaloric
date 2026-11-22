@@ -173,28 +173,26 @@ def main():
     out(f"GO/NO-GO: FeRh {'PASS' if v_ferh else 'FAIL'}; Mn3NiN C4 {'PASS' if c4 else 'FAIL'}")
     (ROOT / "results/step4_validation.txt").write_text("\n".join(lines) + "\n")
 
-    import matplotlib
-    matplotlib.use("Agg")
+    import figstyle as fs
     import matplotlib.pyplot as plt
-    fig, axs = plt.subplots(1, 3, figsize=(15, 4.2), dpi=110)
+    fig, axs = plt.subplots(1, 3, figsize=(fs.FULL, 2.45))
     cols = plt.cm.viridis(np.linspace(0, 0.9, len(labels)))
     for lab, col in zip(labels, cols):
         mc, pc, mh, ph, rm, rp = curves[lab]
-        axs[0].plot(Tc, mc, color=col, lw=1.2); axs[0].plot(Tc, pc, "--", color=col, lw=1)
-        axs[1].plot(Tc, mh, color=col, lw=1.2, label=f"{lab} kbar"); axs[1].plot(Tc, ph, "--", color=col, lw=1)
-    axs[0].set_title("FeRh cooling ΔS(T, 0→p): measured (solid) vs blind prediction (dashed)", fontsize=8)
-    axs[1].set_title("FeRh heating ΔS(T, p): measured (solid) vs blind prediction (dashed)", fontsize=8)
-    for ax in axs[:2]:
-        ax.set_xlim(300, 335); ax.set_xlabel("T (K)"); ax.set_ylabel("ΔS (J kg⁻¹ K⁻¹)")
-    axs[1].legend(fontsize=6, ncol=2)
+        axs[0].plot(Tc, mc, color=col, lw=1.0); axs[0].plot(Tc, pc, "--", color=col, lw=0.8)
+        axs[1].plot(Tc, mh, color=col, lw=1.0, label=f"{float(lab)/10:.2f}"); axs[1].plot(Tc, ph, "--", color=col, lw=0.8)
+    for k, ax in enumerate(axs[:2]):
+        ax.set_xlim(300, 335); ax.set_xlabel("$T$ (K)"); fs.panel(ax, "ab"[k], x=-0.22)
+    axs[0].set_ylabel(r"$\Delta S$ (J kg$^{-1}$ K$^{-1}$)")
+    axs[1].legend(title="$P$ (GPa)", ncol=2, loc="lower left", bbox_to_anchor=(-0.03, -0.03), fontsize=6.5, title_fontsize=6.5, handlelength=0.9, columnspacing=0.5, handletextpad=0.4)
     Pm, rmeas, Pf, fpred = rev
-    axs[2].plot(Pm, rmeas, "ko", label="FeRh reversible, measured (overlap)")
-    axs[2].plot(Pf, fpred, "k--", label="FeRh blind prediction")
-    ps = sorted(mcurves); axs[2].plot(ps, [mcurves[p][0] for p in ps], "s", color="tab:red", label="Mn3NiN |ΔS| first-application, measured")
-    axs[2].plot(ps, [mcurves[p][1] for p in ps], "--", color="tab:red", label="Mn3NiN blind prediction (ΔS_t = 43)")
-    axs[2].set_xlabel("P (GPa)"); axs[2].set_ylabel("peak |ΔS| (J kg⁻¹ K⁻¹)"); axs[2].legend(fontsize=7)
-    axs[2].set_title("peak entropy changes vs pressure", fontsize=8)
-    fig.tight_layout(); fig.savefig(ROOT / "figures/step4_validation.png"); plt.close(fig)
+    axs[2].plot(Pm, rmeas, "ko", ms=3, label="FeRh meas.")
+    axs[2].plot(Pf, fpred, "k--", lw=0.9, label="FeRh pred.")
+    ps = sorted(mcurves); axs[2].plot(ps, [mcurves[p][0] for p in ps], "s", ms=3, color="tab:red", label="Mn$_3$NiN meas.")
+    axs[2].plot(ps, [mcurves[p][1] for p in ps], "--", lw=0.9, color="tab:red", label="Mn$_3$NiN pred.")
+    axs[2].set_xlabel("$P$ (GPa)"); axs[2].set_ylabel(r"peak $|\Delta S|$ (J kg$^{-1}$ K$^{-1}$)"); axs[2].legend(loc="lower right", fontsize=6.5, handlelength=1.2, borderaxespad=0.2)
+    fs.panel(axs[2], "c", x=-0.22)
+    fig.tight_layout(w_pad=0.6); fs.save(fig, ROOT / "figures/step4_validation"); plt.close(fig)
 
 if __name__ == "__main__":
     main()

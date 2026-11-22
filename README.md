@@ -23,9 +23,12 @@ published data.
 | `code/step3_montecarlo.py` | Monte-Carlo uncertainty propagation (per source set) |
 | `code/step4_validation.py` | Blind validation on FeRh and Mn3NiN (criteria stated in the docstring) |
 | `code/step4_posthoc.py` | Post-hoc diagnostics of the validation |
+| `code/step4_crossbranch_posthoc.py` | Post-hoc check: the cross-branch construction scored on FeRh; overlap vs cross-branch for CrN |
 | `code/step5_interpretation.py` | Mean-field coupling decomposition and entropy bookkeeping |
 | `code/step6_field_uniaxial.py` | Magnetic-field contrast and Clausius–Clapeyron uniaxial-stress estimate |
 | `code/step7_design_map.py` | Cross-material comparison (benchmark table and design map) |
+| `code/stepS1_tn_vs_p.py` | Supplementary figure: measured T_N(P) shifts against the Monte-Carlo slope prior |
+| `code/figstyle.py` | Shared figure style (printed size, vector PDF output) |
 | `data/inputs_by_source.csv` | All CrN inputs with source, anchor and kind (measured / derived / digitized) |
 | `data/digitized/` | Digitized CrN specific heat (raw trace and uniform grid) |
 | `data/benchmarks/barocaloric_benchmarks.csv` | Benchmark data for 11 barocaloric materials, with DOIs, anchors and verification flags |
@@ -43,9 +46,11 @@ python code/step2_quasidirect.py
 python code/step3_montecarlo.py
 python code/step4_validation.py
 python code/step4_posthoc.py
+python code/step4_crossbranch_posthoc.py
 python code/step5_interpretation.py
 python code/step6_field_uniaxial.py
 python code/step7_design_map.py
+python code/stepS1_tn_vs_p.py
 ```
 
 The scripts are light: seconds to a few minutes each, and well under 1 GB of memory.

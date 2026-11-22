@@ -155,32 +155,30 @@ def main():
     (ROOT / "results").mkdir(exist_ok=True)
     (ROOT / "results/step2_quasidirect.txt").write_text("\n".join(lines) + "\n")
 
-    import matplotlib
-    matplotlib.use("Agg")
+    import figstyle as fs
     import matplotlib.pyplot as plt
-    # Fig A: reversible fraction vs P for each set and h.
-    fig, axs = plt.subplots(1, 3, figsize=(13, 3.8), dpi=110, sharey=True)
-    for ax, name in zip(axs, SETS):
+    # Fig A (repository only): reversible fraction vs P for each set and h.
+    fig, axs = plt.subplots(1, 3, figsize=(fs.FULL, 2.3), sharey=True)
+    for k, (ax, name) in enumerate(zip(axs, SETS)):
         for h, col in zip(H_LIST, plt.cm.viridis(np.linspace(0, 0.9, len(H_LIST)))):
-            ax.plot(P, results[(name, h)]["f"], color=col, label=f"h = {h:.0f} K")
-        ax.axvline(0.6, color="gray", ls=":", lw=1); ax.text(0.62, 0.05, "0.6 GPa\ncalorimetry limit", fontsize=7, color="gray")
-        ax.set_title(f"{name}: a = {SETS[name]['a']} K/GPa, ΔS_tr = {SETS[name]['dS']/0.066003:.0f} J/kg/K", fontsize=9)
-        ax.set_xlabel("P (GPa)"); ax.set_xlim(0, 3)
-    axs[0].set_ylabel("reversible fraction of ΔS_tr"); axs[0].legend(fontsize=7)
-    fig.tight_layout(); fig.savefig(ROOT / "figures/step2_reversible_fraction.png"); plt.close(fig)
-    # Fig B: ΔS_rev(T) and ΔT_rev(T) curves for the Chaussy set, h = 4 K.
+            ax.plot(P, results[(name, h)]["f"], color=col, label=f"$h$ = {h:g} K")
+        ax.axvline(0.6, color="gray", ls=":", lw=0.8)
+        ax.text(0.97, 0.05, f"{name}, $a$ = {SETS[name]['a']} K GPa$^{{-1}}$", transform=ax.transAxes, ha="right", fontsize=7)
+        ax.set_xlabel("$P$ (GPa)"); ax.set_xlim(0, 3); fs.panel(ax, "abc"[k], x=-0.12)
+    axs[0].set_ylabel(r"reversible fraction of $\Delta S_\mathrm{t}$"); axs[0].legend(loc="upper left", fontsize=6.5)
+    fig.tight_layout(); fs.save(fig, ROOT / "figures/step2_reversible_fraction"); plt.close(fig)
+    # Fig B (manuscript): ΔS_rev(T) and ΔT_rev(T) for central inputs (Chaussy set, h = 4 K).
     r = results[("Chaussy", 4.0)]; dSc, dTc = r["curves"]
-    fig, axs = plt.subplots(1, 2, figsize=(10, 3.8), dpi=110)
+    fig, axs = plt.subplots(1, 2, figsize=(fs.FULL, 2.4))
     for p, col in zip(sorted(dSc), plt.cm.plasma(np.linspace(0, 0.85, len(dSc)))):
         axs[0].plot(TG, dSc[p] / 0.066003, color=col, label=f"{p:.2f} GPa")
         axs[1].plot(TG, dTc[p], color=col, label=f"{p:.2f} GPa")
     axs[0].set_xlim(270, 310); axs[1].set_xlim(270, 310)
-    axs[0].set_ylabel("ΔS_rev (J kg⁻¹ K⁻¹)"); axs[1].set_ylabel("ΔT_rev (K)")
-    for ax in axs:
-        ax.set_xlabel("T (K)"); ax.legend(fontsize=7)
-    axs[0].set_title("Chaussy set, h = 4 K: reversible isothermal ΔS", fontsize=9)
-    axs[1].set_title("reversible adiabatic ΔT (on compression)", fontsize=9)
-    fig.tight_layout(); fig.savefig(ROOT / "figures/step2_dS_dT_chaussy_h4.png"); plt.close(fig)
+    axs[0].set_ylabel(r"$\Delta S_\mathrm{rev}$ (J kg$^{-1}$ K$^{-1}$)"); axs[1].set_ylabel(r"$\Delta T_\mathrm{rev}$ (K)")
+    for k, ax in enumerate(axs):
+        ax.set_xlabel("$T$ (K)"); fs.panel(ax, "ab"[k])
+    axs[0].legend(loc="lower left", fontsize=6.5)
+    fig.tight_layout(); fs.save(fig, ROOT / "figures/step2_dS_dT_chaussy_h4"); plt.close(fig)
 
 
 if __name__ == "__main__":

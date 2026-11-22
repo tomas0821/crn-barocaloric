@@ -1,0 +1,36 @@
+Step 4, post hoc: cross-branch construction (Eq. 3) scored on FeRh. NOT part of the pre-specified criteria.
+FeRh h/FWHM = 9.6/2.46 K (CrN: 3-5/5.3 K)
+== target A: ambient gap from Fig. 1 thermograms (max gap 7.97 J/kg/K)
+ p (GPa) |  max|ΔS_x| measured  predicted Eq.(3)   diff
+   0.031 |                2.79              0.00  -2.79
+   0.061 |                4.06              0.00  -4.06
+   0.112 |                4.45              0.00  -4.45
+   0.162 |                9.19              2.63  -6.56
+   0.190 |               13.14              7.46  -5.67
+   0.200 |               13.26              8.48  -4.78
+   0.240 |               15.29             10.68  -4.61
+   0.244 |               15.29             10.81  -4.48
+   target is UNPHYSICAL (exceeds ΔS_t or nonzero at 0.03 GPa: registration offset)
+   half-reversibility pressure: measured 0.131 GPa, Eq.(3) 0.181 GPa (diff +0.050; C2 tolerance ±0.03)
+   window at 2.5 kbar: measured 318.6-325.6 K, Eq.(3) 319.1-325.6 K (published 319-325 K; C3 tolerance ±1.5 K)
+
+== target B: ambient gap from Fig. 4-derived profiles (max gap 12.46 J/kg/K)
+ p (GPa) |  max|ΔS_x| measured  predicted Eq.(3)   diff
+   0.031 |                0.02              0.00  -0.02
+   0.061 |                0.14              0.00  -0.14
+   0.112 |                0.11              0.00  -0.11
+   0.162 |                5.42              2.63  -2.80
+   0.190 |                9.85              7.46  -2.38
+   0.200 |               10.01              8.48  -1.53
+   0.240 |               12.25             10.68  -1.57
+   0.244 |               12.36             10.81  -1.55
+   target is physical
+   half-reversibility pressure: measured 0.167 GPa, Eq.(3) 0.181 GPa (diff +0.014; C2 tolerance ±0.03)
+   window at 2.5 kbar: measured 319.3-325.4 K, Eq.(3) 319.1-325.6 K (published 319-325 K; C3 tolerance ±1.5 K)
+
+== CrN (Chaussy set, central inputs a = 9.0 K/GPa, no curvature): reversible fraction, transition part only
+ h (K) |  overlap onset/P50 (GPa) |  cross-branch onset/P50 (GPa)
+   2.0 |       0.02 / 0.56        |          0.24 / 0.74         
+   3.0 |       0.02 / 0.62        |          0.36 / 0.84         
+   4.0 |       0.02 / 0.68        |          0.46 / 0.96         
+   5.0 |       0.02 / 0.76        |          0.58 / 1.06         

@@ -60,10 +60,17 @@ for name, (dS, a, TN) in sets.items():
         ev.append((K * c**2 * T0 * b**2 * RV / (2 * d), b))
     out(f"{name:38s} {sj:6.3f} {eta:6.2f} {T0:7.1f} {ev[0][1]:6.1f} {ev[0][0]:8.3f}-{ev[1][0]:<8.3f} {ev[0][0]/eta:6.3f}-{ev[1][0]/eta:.3f}")
 out("Chaussy's α (θ_N(σ) = θ_N(0)(1+ασ²)) maps to η = c·α/(2d): " + ", ".join(f"α = {al} -> η = {c*al/(2*d):.2f}" for al in (2.3, 3.4)))
-out("Reading: hydrostatic pressure couples through a channel that supplies only ~3-7 % of the effective")
-out("first-order coupling, which is why dT_N/dP is small even though ΔS_t is large (a quantification of the")
-out("non-volume origin Chaussy and Browne inferred in 1971). Uniaxial <110> stress reaches the dominant")
-out("anisotropic channel (step 6: 18-23 K/GPa).")
+# σ_j scan: η_tot depends on the chosen jump; η_vol (calibrated to dT_N/dP, Chaussy set) stays < 1 throughout.
+# With β calibrated, η_vol equals B·V_m·(ΔV/V)²/(2 d R T0 σ_j⁴), the elastic energy of the volume jump.
+out("σ_j scan (Chaussy a = 9.0, T_N 281.65; B = 257 GPa; σ_j = 0.856 calibrated, 0.894-0.949 strain-implied):")
+for sj in (0.856, 0.894, 0.93, 0.949):
+    eta = eta_for_sig(sj); g, _ = transition(eta); T0 = 281.65 / g
+    K = 1 / 257e9; b = 9.0e-9 * Ds(sj) / (K * c * T0 * sj**2)
+    ev = K * c**2 * T0 * b**2 * RV / (2 * d)
+    out(f"  σ_j = {sj:.3f}: η_tot = {eta:5.2f}, η_vol = {ev:.3f}, share {100*ev/eta:4.1f} %")
+out("Reading: the volume coupling alone is too weak to make the transition first order (η_vol < 1 for every")
+out("σ_j); its share of η_tot (≈2-7 %) depends on σ_j. With β calibrated to dT_N/dP, η_vol restates the")
+out("Clausius-Clapeyron relation; the mean field does not identify the remaining (non-volume) coupling.")
 out("")
 out("(2) Entropy decomposition (J mol⁻¹ K⁻¹; ×15.15 for J kg⁻¹ K⁻¹)")
 Rln4 = R * np.log(4)
