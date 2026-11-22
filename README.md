@@ -27,6 +27,8 @@ published data.
 | `code/step5_interpretation.py` | Mean-field coupling decomposition and entropy bookkeeping |
 | `code/step6_field_uniaxial.py` | Magnetic-field contrast and Clausius–Clapeyron uniaxial-stress estimate |
 | `code/step7_design_map.py` | Cross-material comparison (benchmark table and design map) |
+| `code/step8a_structure_render.py` | OVITO render of CrN in its double-layer antiferromagnetic state (needs the `ovito` module; see below) |
+| `code/step8_structure_figure.py` | Structure figure: the render plus a schematic of the transformation strain |
 | `code/stepS1_tn_vs_p.py` | Supplementary figure: measured T_N(P) shifts against the Monte-Carlo slope prior |
 | `code/figstyle.py` | Shared figure style (printed size, vector PDF output) |
 | `data/inputs_by_source.csv` | All CrN inputs with source, anchor and kind (measured / derived / digitized) |
@@ -51,7 +53,13 @@ python code/step5_interpretation.py
 python code/step6_field_uniaxial.py
 python code/step7_design_map.py
 python code/stepS1_tn_vs_p.py
+python code/step8_structure_figure.py   # uses the included render
 ```
+
+The structure render (`step8a_structure_render.py`) needs the OVITO Python module (`pip install ovito`),
+which is not in `requirements.txt`. Its output, `figures/step8_structure_render.png`, is included, so
+`step8_structure_figure.py` runs without OVITO. Rendering without a display needs OVITO's headless Qt
+platform and a software Vulkan driver; the script's docstring gives the environment variables.
 
 The scripts are light: seconds to a few minutes each, and well under 1 GB of memory.
 
@@ -87,8 +95,10 @@ Verification flags in the benchmark CSV:
 
 ## Versions
 
-- **v1.1.0:** reproduces every number and figure of the submitted manuscript.
-- **v1.0.0:** an earlier state of the analysis, before the revision; superseded by v1.1.0.
+- **v1.2.0:** reproduces every number and figure of the submitted manuscript, including the structure
+  figure.
+- **v1.1.0:** the same analysis, without the structure figure.
+- **v1.0.0:** an earlier state of the analysis, before the revision.
 
 The concept DOI in the badge above always resolves to the latest version.
 
