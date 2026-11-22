@@ -13,10 +13,11 @@ abstract: >-
   Data and analysis code for a quasi-direct assessment of the barocaloric effect of CrN across its
   first-order antiferromagnetic magnetostructural transition, built entirely on published
   measurements. Includes the digitized specific heat, source-paired model inputs, Monte-Carlo
-  uncertainty propagation, a blind validation on FeRh and Mn3NiN, a magnetic-field contrast, a
+  uncertainty propagation, a held-out test on FeRh and Mn3NiN with a post-hoc cross-branch check,
+  a magnetic-field contrast, a
   Clausius-Clapeyron uniaxial-stress estimate, and a cross-material benchmark of barocaloric
   materials. Code: MIT; data: CC BY 4.0.
-version: 1.0.0
+version: 1.1.0
 doi: 10.5281/zenodo.24441835
 date-released: 2026-11-22
 license: MIT

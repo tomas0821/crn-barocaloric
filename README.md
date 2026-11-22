@@ -21,7 +21,7 @@ published data.
 | `code/step1_cc_check.py` | Clausius–Clapeyron consistency of the input pairings |
 | `code/step2_quasidirect.py` | Reversible ΔS(T,P) and ΔT_ad(T,P); onset / P50 / P90 against hysteresis |
 | `code/step3_montecarlo.py` | Monte-Carlo uncertainty propagation (per source set) |
-| `code/step4_validation.py` | Blind validation on FeRh and Mn3NiN (criteria stated in the docstring) |
+| `code/step4_validation.py` | Held-out test on FeRh and Mn3NiN (pre-specified criteria stated in the docstring) |
 | `code/step4_posthoc.py` | Post-hoc diagnostics of the validation |
 | `code/step4_crossbranch_posthoc.py` | Post-hoc check: the cross-branch construction scored on FeRh; overlap vs cross-branch for CrN |
 | `code/step5_interpretation.py` | Mean-field coupling decomposition and entropy bookkeeping |
@@ -84,6 +84,13 @@ Verification flags in the benchmark CSV:
 - **D:** derived, for example a density from lattice parameters
 - **C:** compiled from a secondary table
 - **n.v.:** not verified in the primary source
+
+## Versions
+
+- **v1.1.0:** reproduces every number and figure of the submitted manuscript.
+- **v1.0.0:** an earlier state of the analysis, before the revision; superseded by v1.1.0.
+
+The concept DOI in the badge above always resolves to the latest version.
 
 ## License
 
