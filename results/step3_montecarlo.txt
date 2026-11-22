@@ -1,0 +1,74 @@
+Regression vs step 2 (Chaussy, h=4): onset/P50 = 0.46/0.96 GPa (step 2: 0.46/0.94); |dS_rev|@1 GPa = 59 J/kg/K (59); dT_rev@1 GPa = 4.5 K (4.5)
+
+== Chaussy, wide slope prior (with curvature) (N = 1500; ΔS_t (6.3, 7.0) J/mol/K, a0 = 9.0 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 0.0e+00 1/K -> ΔS_t decline 0.0 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.34, 0.38, 0.46, 0.54, 0.60 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.82, 0.88, 0.98, 1.08, 1.22 GPa
+   P = 0.50 GPa: |ΔS_rev| median   8.1 J/kg/K (68 %: 1.8-16.6; 95 %: 1.6-21.7); ΔT_rev median 0.8 K (68 %: 0.7-1.1)
+   P = 0.60 GPa: |ΔS_rev| median  19.3 J/kg/K (68 %: 10.6-27.7; 95 %: 4.2-33.5); ΔT_rev median 1.3 K (68 %: 0.9-2.0)
+   P = 1.00 GPa: |ΔS_rev| median  56.0 J/kg/K (68 %: 48.3-63.0; 95 %: 40.4-67.6); ΔT_rev median 4.5 K (68 %: 3.7-5.3)
+   P = 1.50 GPa: |ΔS_rev| median  78.7 J/kg/K (68 %: 73.2-82.9; 95 %: 67.6-86.2); ΔT_rev median 8.5 K (68 %: 7.2-9.8)
+   P = 2.00 GPa: |ΔS_rev| median  89.2 J/kg/K (68 %: 84.4-93.3; 95 %: 79.9-96.8); ΔT_rev median 12.5 K (68 %: 10.3-14.6)
+
+== Chaussy, narrow slope prior (N = 1500; ΔS_t (6.3, 7.0) J/mol/K, a (8.5, 9.5) K/GPa, no curvature, h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 0.0e+00 1/K -> ΔS_t decline 0.0 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.36, 0.38, 0.46, 0.54, 0.58 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.84, 0.90, 0.98, 1.06, 1.12 GPa
+   P = 0.50 GPa: |ΔS_rev| median   8.1 J/kg/K (68 %: 1.8-16.0; 95 %: 1.6-20.4); ΔT_rev median 0.8 K (68 %: 0.7-1.1)
+   P = 0.60 GPa: |ΔS_rev| median  19.3 J/kg/K (68 %: 10.8-26.9; 95 %: 6.5-31.6); ΔT_rev median 1.3 K (68 %: 0.9-1.9)
+   P = 1.00 GPa: |ΔS_rev| median  55.6 J/kg/K (68 %: 49.7-61.1; 95 %: 45.2-65.4); ΔT_rev median 4.4 K (68 %: 3.8-5.0)
+   P = 1.50 GPa: |ΔS_rev| median  78.0 J/kg/K (68 %: 75.1-81.5; 95 %: 72.2-83.9); ΔT_rev median 8.3 K (68 %: 7.6-8.9)
+   P = 2.00 GPa: |ΔS_rev| median  88.8 J/kg/K (68 %: 85.8-91.9; 95 %: 83.9-94.0); ΔT_rev median 12.2 K (68 %: 11.4-12.9)
+
+== Browne, wide slope prior (with curvature) (N = 1500; ΔS_t (8.2, 8.9) J/mol/K, a0 = 7.41 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 0.0e+00 1/K -> ΔS_t decline 0.0 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.40, 0.46, 0.54, 0.62, 0.70 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.94, 1.02, 1.12, 1.26, 1.38 GPa
+   P = 0.50 GPa: |ΔS_rev| median   1.8 J/kg/K (68 %: 1.6-9.7; 95 %: 1.5-16.5); ΔT_rev median 0.7 K (68 %: 0.7-0.8)
+   P = 0.60 GPa: |ΔS_rev| median  11.3 J/kg/K (68 %: 2.2-22.3; 95 %: 1.9-29.5); ΔT_rev median 0.9 K (68 %: 0.8-1.2)
+   P = 1.00 GPa: |ΔS_rev| median  57.6 J/kg/K (68 %: 46.8-67.6; 95 %: 37.8-75.0); ΔT_rev median 3.5 K (68 %: 2.7-4.3)
+   P = 1.50 GPa: |ΔS_rev| median  92.5 J/kg/K (68 %: 84.5-98.8; 95 %: 77.4-103.4); ΔT_rev median 7.1 K (68 %: 6.0-8.4)
+   P = 2.00 GPa: |ΔS_rev| median 108.3 J/kg/K (68 %: 101.7-113.5; 95 %: 96.6-118.0); ΔT_rev median 11.0 K (68 %: 8.9-13.1)
+
+== Browne, narrow slope prior (N = 1500; ΔS_t (8.2, 8.9) J/mol/K, a (7.35, 7.47) K/GPa, no curvature, h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 0.0e+00 1/K -> ΔS_t decline 0.0 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.44, 0.48, 0.56, 0.66, 0.68 GPa
+   P50    [2.5,16,50,84,97.5]% = 1.04, 1.10, 1.20, 1.28, 1.34 GPa
+   P = 0.50 GPa: |ΔS_rev| median   1.8 J/kg/K (68 %: 1.6-7.3; 95 %: 1.6-11.9); ΔT_rev median 0.7 K (68 %: 0.7-0.8)
+   P = 0.60 GPa: |ΔS_rev| median   8.5 J/kg/K (68 %: 2.1-19.2; 95 %: 1.9-23.9); ΔT_rev median 0.9 K (68 %: 0.8-1.1)
+   P = 1.00 GPa: |ΔS_rev| median  52.4 J/kg/K (68 %: 44.2-60.8; 95 %: 40.0-65.8); ΔT_rev median 3.1 K (68 %: 2.6-3.7)
+   P = 1.50 GPa: |ΔS_rev| median  88.2 J/kg/K (68 %: 83.4-92.6; 95 %: 79.7-96.0); ΔT_rev median 6.4 K (68 %: 5.9-7.0)
+   P = 2.00 GPa: |ΔS_rev| median 104.7 J/kg/K (68 %: 101.6-107.9; 95 %: 99.4-110.2); ΔT_rev median 9.7 K (68 %: 9.2-10.3)
+
+== Chaussy, wide prior + PM-phase Δα = 5.0e-06 1/K (sensitivity) (N = 500; ΔS_t (6.3, 7.0) J/mol/K, a0 = 9.0 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 5.0e-06 1/K -> ΔS_t decline 0.8 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.34, 0.40, 0.48, 0.54, 0.60 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.82, 0.90, 1.00, 1.10, 1.20 GPa
+   P = 0.50 GPa: |ΔS_rev| median   7.1 J/kg/K (68 %: 2.1-15.8; 95 %: 2.0-22.0); ΔT_rev median 0.9 K (68 %: 0.8-1.1)
+   P = 0.60 GPa: |ΔS_rev| median  18.4 J/kg/K (68 %: 10.5-27.0; 95 %: 4.1-33.3); ΔT_rev median 1.3 K (68 %: 1.1-1.9)
+   P = 1.00 GPa: |ΔS_rev| median  55.5 J/kg/K (68 %: 48.2-62.6; 95 %: 40.9-67.4); ΔT_rev median 4.4 K (68 %: 3.7-5.2)
+   P = 1.50 GPa: |ΔS_rev| median  78.3 J/kg/K (68 %: 73.3-83.0; 95 %: 68.0-86.5); ΔT_rev median 8.3 K (68 %: 7.1-9.7)
+   P = 2.00 GPa: |ΔS_rev| median  89.0 J/kg/K (68 %: 84.4-93.2; 95 %: 80.0-97.0); ΔT_rev median 12.3 K (68 %: 10.3-14.5)
+
+== Chaussy, wide prior + PM-phase Δα = 1.0e-05 1/K (sensitivity) (N = 500; ΔS_t (6.3, 7.0) J/mol/K, a0 = 9.0 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 1.0e-05 1/K -> ΔS_t decline 1.6 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.34, 0.40, 0.46, 0.54, 0.60 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.82, 0.90, 0.98, 1.10, 1.25 GPa
+   P = 0.50 GPa: |ΔS_rev| median   8.3 J/kg/K (68 %: 2.5-16.2; 95 %: 2.4-22.4); ΔT_rev median 1.1 K (68 %: 1.0-1.1)
+   P = 0.60 GPa: |ΔS_rev| median  19.4 J/kg/K (68 %: 11.2-27.5; 95 %: 4.8-33.8); ΔT_rev median 1.4 K (68 %: 1.2-1.9)
+   P = 1.00 GPa: |ΔS_rev| median  56.1 J/kg/K (68 %: 48.5-62.7; 95 %: 40.2-67.4); ΔT_rev median 4.5 K (68 %: 3.8-5.3)
+   P = 1.50 GPa: |ΔS_rev| median  78.8 J/kg/K (68 %: 73.5-83.1; 95 %: 67.8-86.2); ΔT_rev median 8.5 K (68 %: 7.2-9.8)
+   P = 2.00 GPa: |ΔS_rev| median  89.2 J/kg/K (68 %: 84.6-93.5; 95 %: 80.3-96.5); ΔT_rev median 12.6 K (68 %: 10.5-14.6)
+
+== Browne, wide prior + PM-phase Δα = 5.0e-06 1/K (sensitivity) (N = 500; ΔS_t (8.2, 8.9) J/mol/K, a0 = 7.41 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 5.0e-06 1/K -> ΔS_t decline 0.6 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.42, 0.46, 0.54, 0.64, 0.70 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.94, 1.02, 1.12, 1.26, 1.39 GPa
+   P = 0.50 GPa: |ΔS_rev| median   2.2 J/kg/K (68 %: 2.0-9.7; 95 %: 2.0-16.2); ΔT_rev median 0.9 K (68 %: 0.8-0.9)
+   P = 0.60 GPa: |ΔS_rev| median  12.1 J/kg/K (68 %: 2.6-22.8; 95 %: 2.4-29.3); ΔT_rev median 1.1 K (68 %: 1.0-1.2)
+   P = 1.00 GPa: |ΔS_rev| median  58.3 J/kg/K (68 %: 47.6-67.3; 95 %: 37.3-74.1); ΔT_rev median 3.5 K (68 %: 2.8-4.3)
+   P = 1.50 GPa: |ΔS_rev| median  93.2 J/kg/K (68 %: 85.2-98.8; 95 %: 77.5-104.0); ΔT_rev median 7.2 K (68 %: 6.1-8.4)
+   P = 2.00 GPa: |ΔS_rev| median 108.7 J/kg/K (68 %: 102.7-113.5; 95 %: 97.3-118.1); ΔT_rev median 11.1 K (68 %: 9.1-13.0)
+
+== Browne, wide prior + PM-phase Δα = 1.0e-05 1/K (sensitivity) (N = 500; ΔS_t (8.2, 8.9) J/mol/K, a0 = 7.41 ±10 %, b in [-0.8, 1.2] K/GPa², avg slope 0-1.8 GPa in [6.5, 11], h 3-5 K, σ_TN 0-1.5 K, α_V ±10 %, Δα_PM = 1.0e-05 1/K -> ΔS_t decline 1.3 %/GPa)
+   onset  [2.5,16,50,84,97.5]% = 0.42, 0.46, 0.54, 0.64, 0.70 GPa
+   P50    [2.5,16,50,84,97.5]% = 0.94, 1.04, 1.14, 1.30, 1.40 GPa
+   P = 0.50 GPa: |ΔS_rev| median   2.6 J/kg/K (68 %: 2.4-9.3; 95 %: 2.4-16.0); ΔT_rev median 1.0 K (68 %: 1.0-1.1)
+   P = 0.60 GPa: |ΔS_rev| median  12.2 J/kg/K (68 %: 3.1-22.3; 95 %: 2.9-29.9); ΔT_rev median 1.3 K (68 %: 1.2-1.3)
+   P = 1.00 GPa: |ΔS_rev| median  57.8 J/kg/K (68 %: 45.5-67.4; 95 %: 37.7-76.1); ΔT_rev median 3.5 K (68 %: 2.7-4.2)
+   P = 1.50 GPa: |ΔS_rev| median  92.4 J/kg/K (68 %: 83.6-99.3; 95 %: 77.2-104.3); ΔT_rev median 7.1 K (68 %: 5.9-8.5)
+   P = 2.00 GPa: |ΔS_rev| median 108.3 J/kg/K (68 %: 102.0-114.0; 95 %: 96.5-118.3); ΔT_rev median 10.9 K (68 %: 9.0-13.2)
+

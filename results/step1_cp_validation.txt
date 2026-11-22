@@ -1,0 +1,14 @@
+Step 1b — validation of the digitized Chaussy (1971) Fig. 3 C_p curve
+peak: C_p = 70.3 cal/mol/K = 294 J/mol/K at 8.80 degC (paper: 8.5 degC)
+C_p at +40 degC (PM, above anomaly): 11.85 cal/mol/K = 49.6 J/mol/K (Dulong-Petit 6R = 11.92 cal/mol/K)
+
+baseline                                         window L (cal/mol)  L (J/g)  dS (J/mol/K)  dS (J/kg/K)
+B1 line(-30..+40 C)                          -30..+40 C         436     27.6          6.47         98.1
+B2 quad fit both wings                       -30..+40 C         424     26.9          6.30         95.5
+B3 low-T quad -> step to high-T              -30..+40 C         441     28.0          6.55         99.2
+B4 line(-10..+25 C), sharp part only         -10..+25 C         367     23.2          5.45         82.5
+
+paper: L = 29 J/g (anomaly area) = 457 cal/mol; Clapeyron 28 J/g; dS = 29/281.65 J/g/K = 6.80 J/mol/K = 103 J/kg/K
+excess peak (B1) = 59.8 cal/mol/K; FWHM = 5.30 K (5.80 .. 11.10 degC); effective width L/peak = 7.29 K
+fraction of B1 anomaly area within +-5 K of the peak: 0.74
+background C_p at T_peak (B1): 10.55 cal/mol/K = 44.1 J/mol/K  -> lattice+electronic input for dT_ad

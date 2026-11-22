@@ -1,0 +1,24 @@
+Step 1c — Clausius–Clapeyron consistency (dT/dP = ΔV_m/ΔS_m), K/GPa
+V_m = 10.743 cm^3/mol
+ΔS source                                 -0.56 % (Bertaut/Sayetat 1969)        -0.60 % (Chaussy text)           -0.62 % (Wang 2023)
+Chaussy calorimetric (29 J/g @ 281.65 K)                            8.85                          9.49                          9.80   (ΔS = 6.80 J/mol/K = 103 J/kg/K)
+this work, digitized whole anomaly                                  9.30                          9.96                         10.30   (ΔS = 6.47 J/mol/K = 98 J/kg/K)
+this work, digitized sharp part                                    11.04                         11.83                         12.22   (ΔS = 5.45 J/mol/K = 83 J/kg/K)
+Browne spin-only (0.130 J/g/K)                                      7.01                          7.51                          7.76   (ΔS = 8.58 J/mol/K = 130 J/kg/K)
+
+measured slopes (K/GPa): Browne 7.35-7.47; Rivadulla replot 7.8; Chaussy 9.0
+
+Inverse check: the ΔS implied by each measured slope and ΔV/V (J/mol/K), and L at 281.65 K (J/g)
+  slope Browne 7.35-7.47       ΔV/V -0.56 % (Bertaut/Sayetat 1969) -> ΔS = 8.12 J/mol/K, L = 34.6 J/g
+  slope Browne 7.35-7.47       ΔV/V -0.60 % (Chaussy text)         -> ΔS = 8.70 J/mol/K, L = 37.1 J/g
+  slope Browne 7.35-7.47       ΔV/V -0.62 % (Wang 2023)            -> ΔS = 8.99 J/mol/K, L = 38.4 J/g
+  slope Rivadulla replot 7.8   ΔV/V -0.56 % (Bertaut/Sayetat 1969) -> ΔS = 7.71 J/mol/K, L = 32.9 J/g
+  slope Rivadulla replot 7.8   ΔV/V -0.60 % (Chaussy text)         -> ΔS = 8.26 J/mol/K, L = 35.3 J/g
+  slope Rivadulla replot 7.8   ΔV/V -0.62 % (Wang 2023)            -> ΔS = 8.54 J/mol/K, L = 36.4 J/g
+  slope Chaussy 9.0            ΔV/V -0.56 % (Bertaut/Sayetat 1969) -> ΔS = 6.68 J/mol/K, L = 28.5 J/g
+  slope Chaussy 9.0            ΔV/V -0.60 % (Chaussy text)         -> ΔS = 7.16 J/mol/K, L = 30.6 J/g
+  slope Chaussy 9.0            ΔV/V -0.62 % (Wang 2023)            -> ΔS = 7.40 J/mol/K, L = 31.6 J/g
+
+Reading: Chaussy's own pairing (9.0 K/GPa, -0.56 %) gives L = 28.5 J/g, i.e. their '28 J/g by Clapeyron';
+Browne's pairing (7.4 K/GPa, -0.6 %) gives 8.7 J/mol/K, close to his spin-only 0.130 J/g/K = 8.58 J/mol/K.
+The digitized whole-anomaly ΔS (6.47) pairs with 9.5-10 K/GPa. Never mix families or sources.

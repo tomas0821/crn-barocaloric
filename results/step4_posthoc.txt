@@ -1,0 +1,6 @@
+Step 4 POST-HOC diagnostics (not part of the pre-registered test)
+D1 FeRh heating T_peak vs P (Fig. 3a): 0.024 kbar -> 319.37 K; 0.039 kbar -> 320.32 K; 0.323 kbar -> 319.47 K; 0.638 kbar -> 322.64 K
+   expected shift at 0.323 kbar from the linear 54 K/GPa: +1.74 K; observed vs ambient (319.37 K): +0.10 K
+D2 Mn3NiN pred/meas peak |ΔS| on removal (ΔS_t = 43.1):
+   a =  -13.5 K/GPa -> 0.11: 0.73  0.14: 0.78  0.19: 0.83  0.24: 0.88  0.28: 0.94
+   a =  -18.0 K/GPa -> 0.11: 0.94  0.14: 0.99  0.19: 1.02  0.24: 1.04  0.28: 1.08

@@ -1,0 +1,39 @@
+(A) Field contrast — ΔT_N(H) = -½ Δχ H² / ΔS_t  (cgs: ½ΔχH² in erg/mol; 1 erg = 1e-7 J)
+  H =  1 T  ->  Lacour-Gayet 1973: -0.15/-0.12 mK; Browne via Tsuchiya: -0.19/-0.15 mK; Wang 2023: -0.21/-0.16 mK; bound χ_AFM=0: -0.49/-0.38 mK   (Chaussy/Browne ΔS_t)
+  H =  2 T  ->  Lacour-Gayet 1973: -0.59/-0.47 mK; Browne via Tsuchiya: -0.76/-0.61 mK; Wang 2023: -0.82/-0.65 mK; bound χ_AFM=0: -1.94/-1.54 mK   (Chaussy/Browne ΔS_t)
+  H =  5 T  ->  Lacour-Gayet 1973: -3.68/-2.91 mK; Browne via Tsuchiya: -4.78/-3.79 mK; Wang 2023: -5.15/-4.08 mK; bound χ_AFM=0: -12.13/-9.62 mK   (Chaussy/Browne ΔS_t)
+  H = 10 T  ->  Lacour-Gayet 1973: -14.71/-11.66 mK; Browne via Tsuchiya: -19.12/-15.15 mK; Wang 2023: -20.59/-16.32 mK; bound χ_AFM=0: -48.53/-38.46 mK   (Chaussy/Browne ΔS_t)
+  first-application ΔS_M at 5 T ≤ ΔS_t·|ΔT_N|/W = 0.093 J/kg/K (Browne via Tsuchiya, W = 5.3 K FWHM)
+  first-application ΔS_M at 5 T ≤ ΔS_t·|ΔT_N|/W = 0.236 J/kg/K (bound χ_AFM=0, W = 5.3 K FWHM)
+  field for |ΔT_N| = h = 2 K (Lacour-Gayet 1973, ΔS_t 6.80): 117 T
+  field for |ΔT_N| = h = 2 K (Wang 2023, ΔS_t 6.80): 99 T
+  field for |ΔT_N| = h = 3 K (Lacour-Gayet 1973, ΔS_t 6.80): 143 T
+  field for |ΔT_N| = h = 3 K (Wang 2023, ΔS_t 6.80): 121 T
+  field for |ΔT_N| = h = 5 K (Lacour-Gayet 1973, ΔS_t 6.80): 184 T
+  field for |ΔT_N| = h = 5 K (Wang 2023, ΔS_t 6.80): 156 T
+
+(B) Uniaxial stress along cubic <110>, Clausius–Clapeyron: dT_N/dσ = V_m·|Δε|/ΔS_t
+  |Δε| = 1.25 %: dT_N/dσ = 19.7 K/GPa (Chaussy ΔS_t) | 15.7 K/GPa (Browne ΔS_t)   vs hydrostatic 7.4-9 K/GPa
+  |Δε| = 1.40 %: dT_N/dσ = 22.1 K/GPa (Chaussy ΔS_t) | 17.5 K/GPa (Browne ΔS_t)   vs hydrostatic 7.4-9 K/GPa
+  |Δε| = 1.60 %: dT_N/dσ = 25.3 K/GPa (Chaussy ΔS_t) | 20.0 K/GPa (Browne ΔS_t)   vs hydrostatic 7.4-9 K/GPa
+== Chaussy set, uniaxial (N = 1000; |Δε| 1.25-1.60 %, h 3-5 K, σ_TN 0-1.5 K, linear α = α_V/3 ±10 %)
+   dT_N/dσ [2.5,16,50,84,97.5]% = 19.9, 21.1, 23.1, 25.0, 26.2 K/GPa
+   onset = 0.18 GPa (68 %: 0.15-0.21); σ50 = 0.38 GPa (68 %: 0.35-0.43)
+   σ = 0.20 GPa: |ΔS_rev| median   7.8 J/kg/K (68 %: 0.2-16.0); ΔT_rev median 0.5 K (68 %: 0.1-1.1)
+   σ = 0.30 GPa: |ΔS_rev| median  34.0 J/kg/K (68 %: 24.8-41.7); ΔT_rev median 2.5 K (68 %: 1.8-3.1)
+   σ = 0.50 GPa: |ΔS_rev| median  67.0 J/kg/K (68 %: 61.8-71.1); ΔT_rev median 6.4 K (68 %: 5.4-7.2)
+   σ = 0.75 GPa: |ΔS_rev| median  81.6 J/kg/K (68 %: 78.5-84.4); ΔT_rev median 11.2 K (68 %: 9.8-12.4)
+   σ = 1.00 GPa: |ΔS_rev| median  88.8 J/kg/K (68 %: 86.2-91.8); ΔT_rev median 15.9 K (68 %: 14.3-17.4)
+== Browne set, uniaxial (N = 1000; |Δε| 1.25-1.60 %, h 3-5 K, σ_TN 0-1.5 K, linear α = α_V/3 ±10 %)
+   dT_N/dσ [2.5,16,50,84,97.5]% = 15.7, 16.5, 18.0, 19.4, 20.3 K/GPa
+   onset = 0.23 GPa (68 %: 0.19-0.27); σ50 = 0.49 GPa (68 %: 0.44-0.55)
+   σ = 0.20 GPa: |ΔS_rev| median   0.2 J/kg/K (68 %: 0.2-4.9); ΔT_rev median 0.1 K (68 %: 0.1-0.3)
+   σ = 0.30 GPa: |ΔS_rev| median  22.2 J/kg/K (68 %: 11.0-33.4); ΔT_rev median 1.2 K (68 %: 0.6-1.9)
+   σ = 0.50 GPa: |ΔS_rev| median  67.8 J/kg/K (68 %: 58.1-75.7); ΔT_rev median 4.4 K (68 %: 3.6-5.2)
+   σ = 0.75 GPa: |ΔS_rev| median  94.9 J/kg/K (68 %: 89.9-98.6); ΔT_rev median 8.3 K (68 %: 7.2-9.3)
+   σ = 1.00 GPa: |ΔS_rev| median 106.4 J/kg/K (68 %: 102.8-109.7); ΔT_rev median 12.2 K (68 %: 10.8-13.5)
+
+CAVEATS: single-domain/textured sample assumed (polycrystal averaging lowers dT_N/dσ); the <110> mapping of
+the a/b axes comes from the 88.3° distortion geometry plus Browne's stress-cooling domain selection; the
+mechanical strength and fatigue of bulk CrN under ~0.3-0.5 GPa cyclic stress are unverified. Model-free
+Clausius–Clapeyron only: no microscopic model is used.

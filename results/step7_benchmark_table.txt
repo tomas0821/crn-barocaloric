@@ -1,0 +1,21 @@
+Step 7 — design-rule table (CrN x-ray density 6.143 g/cm³)
+material                            ΔS_t J/kg/K  ΔS_vol J/cm³/K  |dT/dP| K/GPa  ΔV/V (CC) %    h K   h/|dT/dP| GPa
+Mn3GaN                                     22.3           0.156           65.0         1.01   n.v.            n.v.
+Mn3NiN                                     43.0           0.290           13.5         0.39      8 0.59 (0.57-0.62)
+Fe49Rh51                                   12.5           0.124           59.0         0.73     10 0.17 (0.15-0.19)
+MnCoGeB0.03                                47.0           0.376          100.0         3.76     18 0.18 (0.13-0.18)
+Ni-Mn-In                                   27.0           0.221           18.0         0.40   n.v.            n.v.
+NPG                                       372.0           0.396          103.0         4.08     20 0.19 (0.13-0.27)
+(MnNiSi)0.62(FeCoGe)0.38                   62.0           0.453           75.0         3.39     15 0.20 (0.20-0.20)
+NdCu3Fe4O12                                84.2           0.519           36.1         1.87   n.v.            n.v.
+Fe3(bntrz)6(tcnset)6 (SCO)                 80.0           0.114          250.0         2.86      2 0.01 (0.01-0.01)
+(NH4)2SO4                                  65.0           0.117           51.0         0.60      6 0.12 (0.05-0.13)
+CrN hydrostatic (Chaussy set)             103.0           0.633            9.0         0.57      4 0.44 (0.30-0.62)
+CrN hydrostatic (Browne set)              130.0           0.799            7.4         0.59      4 0.54 (0.37-0.75)
+CrN uniaxial <110> (CC estimate)          103.0           0.633           22.5         1.42      4 0.18 (0.12-0.25)
+
+CC consistency check: implied ΔV/V for CrN ≈ 0.57-0.6 % (measured 0.56-0.62 %); Mn3NiN ≈ 0.39 % (measured ~0.4 %).
+Reading: per volume, CrN's transition entropy (0.63-0.80 J/cm³/K) is the largest of the magnetically ordered
+materials listed and above NPG (≈ 0.40). Its small volume change (0.6 %) puts it at |dT/dP| ≈ 7-9 K/GPa, so its
+reversibility onset under hydrostatic pressure (≈ 0.3-0.7 GPa for h = 3-5 K) is among the highest. The shear
+channel (uniaxial <110>, CC estimate) moves CrN to ≈ 20-25 K/GPa and an onset of ≈ 0.12-0.25 GPa.

@@ -1,0 +1,35 @@
+=== FeRh (Fe49Rh51), conventional BCE; blind inputs: Fig. 1 ambient heating thermogram, ΔS_t, h, slopes ===
+inputs: ΔS_t = 12.5 J/kg/K, h = 9.6 K, a_cool = 64.0, a_heat = 54.0 K/GPa; heating peak of the ambient shape at 319.36 K (paper Th 319.4); lattice term off (authors neglect it)
+p(kbar) | cool peak meas/pred      edges meas      edges pred | heat peak meas/pred      edges meas      edges pred | rev meas/pred(overlap)/pred(cross)
+    0.3 |     7.87/6.35       309.5- 311.5   309.2- 312.3 |     0.60/5.72    *  318.0- 322.1   318.7- 321.7 |       0.04/0.36    /0.00    
+    0.6 |    11.66/9.28       309.6- 313.9   309.4- 314.0 |     8.69/8.78       319.0- 322.8   319.0- 323.1 |       0.53/0.84    /0.00    
+    1.1 |    12.41/11.29      309.7- 317.0   309.6- 317.0 |    11.49/10.92      319.2- 325.5   319.1- 325.8 |       1.83/2.56    /0.00    
+    1.6 |    12.50/12.06      309.7- 320.2   309.7- 320.1 |    12.50/11.82      319.3- 328.2   319.3- 328.4 |       8.62/7.54    /2.63    
+    1.9 |    12.50/12.26      309.7- 321.6   309.7- 321.9 |    12.37/12.06      319.3- 328.9   319.3- 329.7 |      11.03/9.96    /7.46    
+    2.0 |    12.50/12.31      309.7- 322.6   309.7- 322.5 |    12.48/12.12      319.3- 330.2   319.3- 330.3 |      11.25/10.47   /8.48    
+    2.4 |    12.50/12.44      309.7- 325.2   309.7- 325.1 |    12.53/12.34      319.4- 332.5   319.3- 332.5 |      12.32/11.58   /10.68   
+    2.5 |    12.50/12.44      309.7- 325.4   309.7- 325.4 |    12.50/12.37      319.3- 333.0   319.3- 333.0 |      12.41/11.65   /10.81   
+reversible fraction crosses 0.5 at: measured 0.146 GPa, predicted 0.150 GPa
+reversibility window (FWHM) at 2.5 kbar: measured 319.3-325.4 K (paper text: 319-325 K), predicted 319.2-325.5 K
+C1 single-branch curves: FAIL   (* marks a pressure that misses)
+C2 reversible magnitude and crossing: PASS   (crossing within ±0.03 GPa: True)
+C3 reversibility window: PASS
+FeRh blind validation: FAIL
+
+=== Mn3NiN, inverse BCE (dT/dP < 0); cooling-only data; blind inputs: Fig. 1(g) ambient dQ/dT, ΔS_t(0), slope ===
+inputs: a = -13.5 K/GPa, ambient cooling peak at 254.97 K, background C_p ≈ 653 J/kg/K, own excess integral 43.2 J/kg/K
+P(GPa) | |ΔS| meas   pred 1   pred 2 | ΔT meas   pred 1   pred 2 | ratio(primary) ΔS, ΔT
+  0.11 |     21.33    15.64    15.66 |    1.37     1.20     1.20 |  0.73,  0.88  *
+  0.14 |     24.75    19.35    19.38 |    1.73     1.53     1.53 |  0.78,  0.89  *
+  0.19 |     29.86    24.85    24.88 |    2.32     2.07     2.07 |  0.83,  0.89
+  0.24 |     33.31    29.38    29.43 |    2.97     2.62     2.62 |  0.88,  0.88
+  0.28 |     34.33    32.32    32.37 |    3.39     3.05     3.05 |  0.94,  0.90
+  0.34 |     34.93    35.65    35.70 |    4.19     3.70     3.70 |  1.02,  0.88
+  0.37 |     34.93    36.89    36.95 |    4.40     4.02     4.03 |  1.06,  0.92
+  0.40 |     34.93    37.92    37.98 |    4.54     4.35     4.35 |  1.09,  0.96
+  0.48 |     34.93    39.79    39.85 |    5.43     5.20     5.20 |  1.14,  0.96
+  0.56 |     34.93    40.78    40.85 |    5.92     6.05     6.05 |  1.17,  1.02
+C4 Mn3NiN (P ≤ 0.28 GPa, ±20 %): FAIL
+measured ΔS_t(P) on cooling (Fig. 3(b)): 0.00 GPa: 43.1, 0.11 GPa: 39.6, 0.14 GPa: 43.2, 0.19 GPa: 38.8, 0.24 GPa: 38.0, 0.28 GPa: 41.8, 0.34 GPa: 38.3, 0.37 GPa: 34.1, 0.40 GPa: 35.0, 0.48 GPa: 35.8, 0.56 GPa: 34.4
+
+GO/NO-GO: FeRh FAIL; Mn3NiN C4 FAIL

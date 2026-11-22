@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use these data or this code, please cite the accompanying article and this repository."
+title: "Data and code for: Barocaloric response of CrN: a large transition entropy behind a weak volume channel"
+authors:
+  - family-names: Rojas
+    given-names: Tomas
+    orcid: "https://orcid.org/0000-0001-5745-4255"
+    affiliation: "Universidad de Costa Rica"
+  - family-names: Thorat
+    given-names: Ruhi
+    affiliation: "Ohio University"
+version: 1.0.0
+date-released: 2026-11-22
+license: MIT
+repository-code: "https://github.com/tomas0821/crn-barocaloric"
+keywords:
+  - barocaloric effect
+  - CrN
+  - magnetostructural transition
+  - Clausius-Clapeyron
