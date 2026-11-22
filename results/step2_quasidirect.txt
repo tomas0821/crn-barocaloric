@@ -19,4 +19,10 @@ slope-11     10 11.00   0.92   1.32   2.92 |   1.15-1.24   1.34-1.51            
 
 Columns: onset/P50/P90 in GPa from the full curves; the closed form brackets use W = FWHM..effective width.
 |dS_rev| includes the lattice term; dT_rev is the max over T of the reversible adiabatic temperature change.
+
+Lattice check (Chaussy set, a = 9.0 K/GPa): dT_rev at 1 GPa with / without the lattice term
+   h = 3.5 K: 4.89 / 4.68 K; P50 = 0.890 GPa
+   h = 4.0 K: 4.47 / 4.25 K; P50 = 0.945 GPa
+Classic-sample check (Chaussy shape and ΔS_t, h = 3.5 K): P50 for a = 7.41 / 7.8 / 9.0 K/GPa
+   1.080 / 1.025 / 0.890 GPa
 Chaussy set: digitized ΔS = 6.47 J/mol/K rescaled x1.050 to 6.80; T_peak = 281.95 K

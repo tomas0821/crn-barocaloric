@@ -114,7 +114,7 @@ def main():
     ax.axvline(0.6, color="gray", ls=":", lw=0.8)
     ax.text(0.57, 9.0, "0.6 GPa", fontsize=6.5, color="gray", ha="right")
     ax.set_xscale("log"); ax.set_yscale("log"); ax.set_xlim(0.005, 2); ax.set_ylim(8, 600)
-    ax.set_xlabel(r"onset estimate $h/|dT_\mathrm{t}/dP|$ (GPa)"); ax.set_ylabel(r"$\Delta S_\mathrm{t}$ (J kg$^{-1}$ K$^{-1}$)")
+    ax.set_xlabel(r"hysteresis pressure $h/|dT_\mathrm{t}/dP|$ (GPa)"); ax.set_ylabel(r"$\Delta S_\mathrm{t}$ (J kg$^{-1}$ K$^{-1}$)")
     fs.panel(ax, "b")
     fig.tight_layout(); fs.save(fig, ROOT / "figures/step7_design_map"); plt.close(fig)
 

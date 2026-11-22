@@ -82,7 +82,7 @@ def build(params):
     return S_ex, S_bg, Cp_bg_at, dict(scale=scale, dS_dig=dS_dig, Tpk=Tpk_dig + shiftT)
 
 
-def analyse(name, params, h):
+def analyse(name, params, h, lat_scale=1.0):
     S_ex, S_bg, _, info = build(params)
     a = params["a"]
     alphaV = A0 + A1 * TG
@@ -91,7 +91,7 @@ def analyse(name, params, h):
     f = np.zeros(P.size); dSrev_max = np.zeros(P.size); dTrev_max = np.zeros(P.size); dS1_max = np.zeros(P.size)
     dSrev_curves, dTrev_curves = {}, {}
     for i, p in enumerate(P):
-        lat = -VM * alphaV * p * 1e9                       # J/mol/K (always reversible)
+        lat = -VM * alphaV * p * 1e9 * lat_scale           # J/mol/K (always reversible)
         Sc = S_bg(TG) + lat + S_ex(TG - a * p + h)
         Shp = S_bg(TG) + lat + S_ex(TG - a * p)
         trans = np.minimum(0.0, (Sc - lat) - Sh0)          # transition part only
@@ -109,7 +109,7 @@ def analyse(name, params, h):
             lo, hi = TG - 2.0, TG + 60.0
             for _ in range(40):
                 mid = 0.5 * (lo + hi)
-                g = S_bg(mid) - VM * (A0 + A1 * mid) * p * 1e9 + np.minimum(Sex0, S_ex(mid - a * p + h)) - target
+                g = S_bg(mid) - VM * (A0 + A1 * mid) * p * 1e9 * lat_scale + np.minimum(Sex0, S_ex(mid - a * p + h)) - target
                 hi = np.where(g > 0, mid, hi); lo = np.where(g > 0, lo, mid)
             dT = 0.5 * (lo + hi) - TG
             ok = (TG > 240) & (TG < 330)
@@ -150,6 +150,16 @@ def main():
     out("")
     out("Columns: onset/P50/P90 in GPa from the full curves; the closed form brackets use W = FWHM..effective width.")
     out("|dS_rev| includes the lattice term; dT_rev is the max over T of the reversible adiabatic temperature change.")
+    # Checks quoted in the text (section 3.3): the lattice term does not add to ΔT_rev (the transformed
+    # fraction can only grow, so ΔT_rev is capped near aP - h), and P50 for a classic sample with a lower slope.
+    out("")
+    out("Lattice check (Chaussy set, a = 9.0 K/GPa): dT_rev at 1 GPa with / without the lattice term")
+    for hh in (3.5, 4.0):
+        on, off = analyse("Chaussy", SETS["Chaussy"], hh), analyse("Chaussy", SETS["Chaussy"], hh, lat_scale=0.0)
+        j = np.argmin(abs(P - 1.0))
+        out(f"   h = {hh:.1f} K: {on['dTrev_max'][j]:.2f} / {off['dTrev_max'][j]:.2f} K; P50 = {on['P50']:.3f} GPa")
+    out("Classic-sample check (Chaussy shape and ΔS_t, h = 3.5 K): P50 for a = 7.41 / 7.8 / 9.0 K/GPa")
+    out("   " + " / ".join(f"{analyse('Chaussy', dict(SETS['Chaussy'], a=aa), 3.5)['P50']:.3f}" for aa in (7.41, 7.8, 9.0)) + " GPa")
     i0 = results[("Chaussy", 3.0)]["info"]
     out(f"Chaussy set: digitized ΔS = {i0['dS_dig']:.2f} J/mol/K rescaled x{i0['scale']:.3f} to 6.80; T_peak = {i0['Tpk']:.2f} K")
     (ROOT / "results").mkdir(exist_ok=True)
