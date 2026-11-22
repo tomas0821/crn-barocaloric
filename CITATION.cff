@@ -9,6 +9,13 @@ authors:
   - family-names: Thorat
     given-names: Ruhi
     affiliation: "Ohio University"
+abstract: >-
+  Data and analysis code for a quasi-direct assessment of the barocaloric effect of CrN across its
+  first-order antiferromagnetic magnetostructural transition, built entirely on published
+  measurements. Includes the digitized specific heat, source-paired model inputs, Monte-Carlo
+  uncertainty propagation, a blind validation on FeRh and Mn3NiN, a magnetic-field contrast, a
+  Clausius-Clapeyron uniaxial-stress estimate, and a cross-material benchmark of barocaloric
+  materials. Code: MIT; data: CC BY 4.0.
 version: 1.0.0
 date-released: 2026-11-22
 license: MIT
