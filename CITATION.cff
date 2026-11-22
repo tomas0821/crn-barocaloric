@@ -17,6 +17,7 @@ abstract: >-
   Clausius-Clapeyron uniaxial-stress estimate, and a cross-material benchmark of barocaloric
   materials. Code: MIT; data: CC BY 4.0.
 version: 1.0.0
+doi: 10.5281/zenodo.24441835
 date-released: 2026-11-22
 license: MIT
 repository-code: "https://github.com/tomas0821/crn-barocaloric"

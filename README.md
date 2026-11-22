@@ -1,5 +1,7 @@
 # CrN barocaloric analysis: data and code
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24441835.svg)](https://doi.org/10.5281/zenodo.24441835)
+
 Data and analysis code for
 
 > T. Rojas and R. Thorat, *Barocaloric response of CrN: a large transition entropy behind a weak
